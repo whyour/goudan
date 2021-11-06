@@ -61,7 +61,7 @@ export default class IdiomGame<T> {
         this.$stack.push(idiom)
     }
 
-    public startTimer(timeout: number = 30000) {
+    public startTimer(timeout: number = 60000) {
         this.$timer = setTimeout(async () => {
             if (this.$status === "start") await this.end()
         }, timeout)

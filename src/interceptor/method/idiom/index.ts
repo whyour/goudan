@@ -139,7 +139,8 @@ const idiomInterceptor = new Interceptor("idiom", context => {
 
                         // 加分
                         gameSpace[spaceId].push(idiom)
-                        gameSpace[spaceId].addScore(message.talker().id, message.talker().name())
+                        const { payload } = checkerArgs.contact
+                        gameSpace[spaceId].addScore(payload.id, payload.name)
                         // 接龙
                         let nextIdiom, count = 0
                         do {
@@ -181,7 +182,7 @@ const idiomInterceptor = new Interceptor("idiom", context => {
                             score: scoreResult
                         }))
                     } else if (winner === "player") {
-                        await message.say(context.template.use("idiom.game.botWin", {
+                        await message.say(context.template.use("idiom.game.playerWin", {
                             score: scoreResult
                         }))
                     }

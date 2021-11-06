@@ -47,7 +47,7 @@ wechaty.on("scan", (qrcode, status) => {
             console.log(template.use("on.scan.link"))
             console.log(`https://wechaty.js.org/qrcode/${encodeURIComponent(qrcode)}`)
             // 生成二维码打印在屏幕上
-            qrcodeTerminal.generate(qrcode, function (output) {
+            qrcodeTerminal.generate(qrcode, { small: true }, (output) => {
                 console.log(template.use("on.scan.terminal", {
                     qrcode: output
                 }))

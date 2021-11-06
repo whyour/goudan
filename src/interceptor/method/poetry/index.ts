@@ -10,19 +10,19 @@ const jokeInterceptor = new Interceptor("poetry", context => {
         "好嘞，诗来了：<br/>{content}",
         "诗来咯：<br/>{content}",
     ])
-    context.template.add("joke.failed", "哎呀，狗蛋没找到合适的笑话。等会再来试试？")
+    context.template.add("poetry.failed", "哎呀，狗蛋没找到合适的诗词。等会再来试试？")
 })
     .title("诗词")
     .usage("来首诗")
-    .check((context, message) => /^(狗蛋.*)来首?(诗)/.test(message.text()))
+    .check((context, message) => /^(狗蛋.*)?(诗|诗词)/.test(message.text()))
     .handler(async context => {
         const result: string = await sentence()
         if (result) {
-            return context.template.use("joke.success", {
+            return context.template.use("poetry.success", {
                 content: result
             })
         } else {
-            return context.template.use("joke.failed")
+            return context.template.use("poetry.failed")
         }
     })
 

@@ -66,7 +66,7 @@ const idiomInterceptor = new Interceptor("idiom", context => {
         null
 
     context.template.add("idiom.game.playing", "现在正在进行一个成语接龙游戏哦，赶紧回答吧。")
-    context.template.add("idiom.game.start", "成语接龙游戏开始！<br/>请在30秒内写出一个以下面的成语的最后一个字（同音字亦可）开头的成语：<br/>{idiom}")
+    context.template.add("idiom.game.start", "成语接龙游戏开始！<br/>请在60秒内写出一个以下面的成语的最后一个字（同音字亦可）开头的成语：<br/>{idiom}")
     context.template.add("idiom.game.next", [
         "真棒！<br/>那狗蛋再接一个：<br/>{idiom}",
         "不错不错~<br/>那狗蛋再接一个：<br/>{idiom}",

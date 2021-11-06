@@ -7,8 +7,7 @@ import { sentence } from "./api";
 
 const jokeInterceptor = new Interceptor("poetry", context => {
     context.template.add("poetry.success", [
-        "好嘞，诗来了：<br/>{content}",
-        "诗来咯：<br/>{content}",
+        "{content}",
     ])
     context.template.add("poetry.failed", "哎呀，狗蛋没找到合适的诗词。等会再来试试？")
 })

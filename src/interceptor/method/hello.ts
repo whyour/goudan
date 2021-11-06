@@ -1,7 +1,5 @@
 import Interceptor from "../Interceptor";
 
-
-
 const HelloInterceptor = new Interceptor("Hello", context => {
     context.template.add("helloWorld", "Hello Wechaty!")
 })

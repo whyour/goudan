@@ -11,9 +11,7 @@ import Interceptor from "../../Interceptor";
 
 const jokeInterceptor = new Interceptor("joke", context => {
     context.template.add("joke.success", [
-        "好嘞，给您讲个笑话图一乐：<br/>{content}",
-        "笑话来咯：<br/>{content}",
-        "行，给老板讲个段子：<br/>{content}"
+        "{content}",
     ])
     context.template.add("joke.failed", "哎呀，狗蛋没找到合适的笑话。等会再来试试？")
 })

@@ -139,8 +139,7 @@ const idiomInterceptor = new Interceptor("idiom", context => {
 
                         // 加分
                         gameSpace[spaceId].push(idiom)
-                        const { payload } = checkerArgs.contact
-                        gameSpace[spaceId].addScore(payload.id, payload.name)
+                        gameSpace[spaceId].addScore(answer.userId, answer.userName)
                         // 接龙
                         let nextIdiom, count = 0
                         do {

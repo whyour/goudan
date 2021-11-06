@@ -36,9 +36,10 @@ server(botConfig.server.port)
 
 // 引入拦截器
 import {mp} from "./interceptor";
+import { initCron } from "./lib/Cron";
 
 const wechaty = Wechaty.instance({
-    name: "PiggyBro"
+    name: "Goudan"
 })
 wechaty.on("scan", (qrcode, status) => {
     switch (status) {
@@ -66,6 +67,7 @@ wechaty.on("login", (user: Contact) => {
     console.log(template.use("on.login", {
         name: `\x1B[43m${user.name()}\x1b[0m`
     }))
+    initCron(wechaty);
 })
 wechaty.on("logout", (user: Contact) => {
     console.log(template.use("on.logout", {

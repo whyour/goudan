@@ -23,7 +23,7 @@ import wiki from "../api/wiki"
 import status from "../api/status"
 
 const routes: Route[] = [
-    { path: "/api", handler: () => success("Hello Piggy Bro!") },
+    { path: "/api", handler: () => success("Hello Goudan!") },
     { path: "/api/wiki", handler: wiki, method: "GET,POST" },
     { path: "/api/status", handler: status, method: "GET,POST" }
 ]

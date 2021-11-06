@@ -2,7 +2,7 @@ const log = console.log
 const warn = console.warn
 const error = console.error
 const getPrefix = (...data: any) => {
-    let prefix = "Piggy Bro"
+    let prefix = "Goudan"
     let output = data
     if (typeof data[0] === "string" && /^\[(.*)]/.test(data[0])) {
         prefix = data[0].match(/^\[(.*)]/)[1]

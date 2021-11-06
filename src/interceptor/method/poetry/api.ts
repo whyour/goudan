@@ -7,7 +7,7 @@ export async function sentence() {
   const headers = {
     "X-User-Token": "GLhYWRbpB6e6bV0hrDElpGarj0LTWGpM",
   };
-  const { data } = await axios.get(url, { headers });
+  const { data: { data } } = await axios.get(url, { headers });
   return data.content;
 }
 

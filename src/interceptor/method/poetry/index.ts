@@ -17,7 +17,7 @@ const jokeInterceptor = new Interceptor("poetry", context => {
     .check((context, message) => /^(狗蛋.*)来首?(诗)/.test(message.text()))
     .handler(async context => {
         const result: string = await sentence()
-        if (result && result.length > 0) {
+        if (result) {
             return context.template.use("joke.success", {
                 content: result
             })
@@ -25,5 +25,5 @@ const jokeInterceptor = new Interceptor("poetry", context => {
             return context.template.use("joke.failed")
         }
     })
-    
+
 export default jokeInterceptor

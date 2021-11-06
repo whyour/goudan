@@ -1,0 +1,60 @@
+{
+  "name": "piggy-bro",
+  "version": "1.0.0",
+  "description": "An open-source wechaty based chatting bot",
+  "main": "build/index.js",
+  "engines": {
+    "node": ">=12.0.0"
+  },
+  "files": [
+    "README.md",
+    "package.json",
+    "tsconfig.json",
+    "build",
+    "docs"
+  ],
+  "scripts": {
+    "start": "tsc && node build/entry.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "release": "tsc && npm publish"
+  },
+  "keywords": [
+    "wechaty",
+    "bot"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "iconv-lite": "^0.4.24",
+    "istextorbinary": "^6.0.0",
+    "mime": "^2.5.2",
+    "NeteaseCloudMusicApi": "^4.0.17",
+    "node-emoji": "^1.10.0",
+    "pinyin": "^2.10.2",
+    "qrcode-terminal": "^0.12.0",
+    "sqlite3": "^5.0.2",
+    "wechaty": "^0.62.3",
+    "wechaty-puppet-wechat": "^0.28.1"
+  },
+  "devDependencies": {
+    "@types/mime": "^2.0.3",
+    "@types/pinyin": "^2.8.3",
+    "@types/sqlite3": "^3.1.7"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ReiKohaku/piggy-bro.git"
+  },
+  "author": {
+    "name": "ReiKohaku",
+    "email": "hbsjzjwj@gmail.com",
+    "url": "https://github.com/ReiKohaku"
+  },
+  "bugs": {
+    "url": "https://github.com/ReiKohaku/piggy-bro/issues"
+  },
+  "homepage": "https://github.com/ReiKohaku/piggy-bro#readme",
+  "publishConfig": {
+    "access": "public"
+  }
+}

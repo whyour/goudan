@@ -1,0 +1,15 @@
+import {template} from "./bot";
+
+template.add("on.start", "机器人应用已启动。")
+template.add("on.scan.link", "请在浏览器内打开下方链接，使用机器人的手机微信扫描二维码：")
+template.add("on.scan.terminal", "您也可以扫描下方的二维码：\n{qrcode}")
+template.add("on.scan.confirm", "已扫码，请确认登录。")
+template.add("on.scan.login", "已确认登录，请稍等……")
+template.add("on.login", "用户 {name} 已登录。")
+template.add("on.logout", "用户 {name} 已登出。")
+template.add("on.error", "发生了未经处理的错误。")
+template.add("error.unknown", "狗蛋这里出了点问题，没能帮到你真是抱歉。")
+template.add("error.api.key.missing", "狗蛋没有查询数据的令牌，现在没法给您看这个。")
+template.add("error.api.call.limit", "今天使用这个功能的次数达到上限了，明天再来吧^_^")
+template.add("error.api.call.no_permission", "哎呀，对方不让狗蛋查这个数据。")
+template.add("on.load.finish", "已加载 {count} 个功能模块。")

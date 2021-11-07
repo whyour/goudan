@@ -111,7 +111,7 @@ export const toAqiDesc = (aqi: number): string => {
     else return "重度污染"
 }
 
-template.set("weather.success", "{address}的实时天气情况：<br/>{weather}<br/>温度：{temperature}℃<br/>体感温度：{apparent_temperature}℃<br/>空气质量：{aqi}<br/>舒适指数：{comfort}<br/>紫外线指数：{ultraviolet}<br/>以上数据来源于彩云天气")
+template.set("weather.success", "{address}的实时天气情况：\n{weather}\n温度：{temperature}℃\n体感温度：{apparent_temperature}℃\n空气质量：{aqi}\n舒适指数：{comfort}\n紫外线指数：{ultraviolet}\n以上数据来源于彩云天气")
 
 export default function caiyunWeather(lng: number, lat: number): Promise<RealtimeWeather> {
     const apiKey = getAPIKey("weather")

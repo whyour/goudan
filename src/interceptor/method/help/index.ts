@@ -17,7 +17,7 @@ const helpInterceptor = new Interceptor("help")
             if (usage) return usage
         } else {
             const usages = await mp.usages(message)
-            return usages.join("<br/>")
+            return usages.join("\n")
         }
     })
     .usage("获取狗蛋的使用帮助")

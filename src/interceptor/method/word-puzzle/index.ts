@@ -16,15 +16,15 @@ const defaultWordPuzzleConfig = (): WordPuzzleConfig => {
 
 const wordPuzzleInterceptor = new Interceptor("word-puzzle", (context) => {
     context.template.add("word-puzzle.game.start", [
-        "来啦，猜字谜：<br/>{puzzle}",
-        "要猜字谜吗？那么来试试吧：<br/>{puzzle}"
+        "来啦，猜字谜：\n{puzzle}",
+        "要猜字谜吗？那么来试试吧：\n{puzzle}"
     ])
     context.template.add("word-puzzle.game.playing", "当前正在进行一个猜字谜游戏，赶紧回答吧。")
     context.template.add("word-puzzle.game.win", [
-        "{name}答对啦！<br/>谜底是：{answer}<br/>{reason}"
+        "{name}答对啦！\n谜底是：{answer}\n{reason}"
     ])
     context.template.add("word-puzzle.game.lose", [
-        "没有人回答出来吗？那么狗蛋公布答案了。<br/>谜底是：{answer}<br/>{reason}"
+        "没有人回答出来吗？那么狗蛋公布答案了。\n谜底是：{answer}\n{reason}"
     ])
 })
     .title("猜字谜")

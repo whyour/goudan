@@ -11,7 +11,7 @@ import Interceptor from "../../Interceptor";
 
 const weatherInterceptor = new Interceptor("weather", context => {
     context.template.add("weather.location.unknown", "狗蛋不知道你说的是哪里，确认一下？")
-    context.template.add("weather.success", "{address}的天气情况：<br/>{weather}<br/>温度：{temperature}")
+    context.template.add("weather.success", "{address}的天气情况：\n{weather}\n温度：{temperature}")
 })
     .title("查天气")
     .alias("天气")

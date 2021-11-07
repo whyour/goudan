@@ -1,10 +1,10 @@
 import Interceptor from "../Interceptor";
 
 const HelloInterceptor = new Interceptor("Hello", context => {
-    context.template.add("helloWorld", "Hello Wechaty!")
+    context.template.add("helloWorld", "狗蛋来了！")
 })
     .check((context, message) => {
-        return /^test$/.test(message.text())
+        return /^狗蛋$/.test(message.text())
     })
     .handler((context) => {
         return context.template.use("helloWorld")

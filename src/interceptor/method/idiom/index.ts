@@ -66,23 +66,23 @@ const idiomInterceptor = new Interceptor("idiom", context => {
         null
 
     context.template.add("idiom.game.playing", "现在正在进行一个成语接龙游戏哦，赶紧回答吧。")
-    context.template.add("idiom.game.start", "成语接龙游戏开始！<br/>请在60秒内写出一个以下面的成语的最后一个字（同音字亦可）开头的成语：<br/>{idiom}")
+    context.template.add("idiom.game.start", "成语接龙游戏开始！\n请在60秒内写出一个以下面的成语的最后一个字（同音字亦可）开头的成语：\n{idiom}")
     context.template.add("idiom.game.next", [
-        "真棒！<br/>那狗蛋再接一个：<br/>{idiom}",
-        "不错不错~<br/>那狗蛋再接一个：<br/>{idiom}",
-        "好厉害！<br/>那狗蛋再接一个：<br/>{idiom}"
+        "真棒！\n那狗蛋再接一个：\n{idiom}",
+        "不错不错~\n那狗蛋再接一个：\n{idiom}",
+        "好厉害！\n那狗蛋再接一个：\n{idiom}"
     ])
     context.template.add("idiom.game.wrong", [
         "“{idiom}”好像不是成语哦。",
         "“{idiom}”似乎不是一个成语呢。"
     ])
     context.template.add("idiom.game.playerWin", [
-        "你真厉害！狗蛋也接不上下一个了。<br/>本轮得分：<br/>{score}",
-        "嗯……狗蛋也不知道下一个该接什么，是你赢了。<br/>本轮得分：<br/>{score}"
+        "你真厉害！狗蛋也接不上下一个了。\n本轮得分：\n{score}",
+        "嗯……狗蛋也不知道下一个该接什么，是你赢了。\n本轮得分：\n{score}"
     ])
     context.template.add("idiom.game.botWin", [
-        "既然接不上了，那么就算狗蛋赢了哦。<br/>本轮得分：<br/>{score}",
-        "没人能答上来了吗？那么狗蛋赢了哦。<br/>本轮得分：<br/>{score}",
+        "既然接不上了，那么就算狗蛋赢了哦。\n本轮得分：\n{score}",
+        "没人能答上来了吗？那么狗蛋赢了哦。\n本轮得分：\n{score}",
     ])
 })
     .title("成语接龙")

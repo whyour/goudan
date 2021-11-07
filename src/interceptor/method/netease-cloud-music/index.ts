@@ -196,7 +196,7 @@ namespace NeteaseCloudMusicTypes {
 
 const neteaseMusicInterceptor = new Interceptor("netease-cloud-music", context => {
     context.template.add("netease-cloud-music.search.failed", "很抱歉，搜索 {search} 时失败了，请你等会再试试吧。")
-    context.template.add("netease-cloud-music.search.success", "狗蛋给你找到了一首歌~<br/>{title} - {artists}<br/>{url}")
+    context.template.add("netease-cloud-music.search.success", "狗蛋给你找到了一首歌~\n{title} - {artists}\n{url}")
 })
     .title("网易云音乐")
     .alias("搜音乐")

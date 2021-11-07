@@ -110,7 +110,7 @@ export class MessageProcessor {
 
     public async usage(name: string, message?: Message): Promise<string | void> {
         for (const i of this.interceptors) {
-            if (i.$name === name || i.$title === name || i.$alias.includes(name)) return `${i.$name}<br/>${typeof i.$usage === "string" ? i.$usage : await i.$usage(this.context, message)}`
+            if (i.$name === name || i.$title === name || i.$alias.includes(name)) return `${i.$name}\n${typeof i.$usage === "string" ? i.$usage : await i.$usage(this.context, message)}`
         }
         return void 0
     }

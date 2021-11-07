@@ -20,8 +20,8 @@ import Interceptor from "../../Interceptor";
 
 const weiboInterceptor = new Interceptor("weibo", context => {
     context.template.add("weibo.success", [
-        "微博热搜有哪些：<br/>{hotSearch}",
-        "现在的微博热搜：<br/>{hotSearch}",
+        "微博热搜有哪些：\n{hotSearch}",
+        "现在的微博热搜：\n{hotSearch}",
     ])
 })
     .title("微博热搜")
@@ -37,7 +37,7 @@ const weiboInterceptor = new Interceptor("weibo", context => {
         return context.template.use("weibo.success", {
             hotSearch: hotSearchList
                 .map(h => `${h.key}${h.isNew ? Emoji.get("new") : ""}${h.isHot ? Emoji.get("fire") : ""}${h.isExplosive ? Emoji.get("boom") : ""}${h.isBoiled ? Emoji.get("hotsprings") : ""}`)
-                .join("<br/>")
+                .join("\n")
         })
     })
 export default weiboInterceptor

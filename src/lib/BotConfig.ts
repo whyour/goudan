@@ -12,7 +12,7 @@ export interface BotConfig {
 }
 const defaultBotConfig: BotConfig = {
     interceptor: {
-        enable: ["hello", "garden"]
+        enable: ["hello"]
     },
     server: {
         port: 8088

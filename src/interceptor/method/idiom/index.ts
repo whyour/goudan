@@ -174,7 +174,7 @@ const idiomInterceptor = new Interceptor("idiom", context => {
                     const medalEmoji = [Emoji.get("first_place_medal"), Emoji.get("second_place_medal"), Emoji.get("third_place_medal")]
                     const scoreResult = scoreArray.length ?
                         scoreArray.map((v, index) => `${index <= 2 ? medalEmoji[index] : ""}${v.name}：${v.score}分`)
-                            .join("<br />") :
+                            .join("\n") :
                         "没有人得分"
                     if (winner === "bot") {
                         await message.say(context.template.use("idiom.game.botWin", {

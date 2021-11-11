@@ -120,7 +120,6 @@ export default function caiyunWeather(lng: number, lat: number): Promise<Realtim
             method: "GET",
             url: `https://api.caiyunapp.com/v2.5/${apiKey}/${lng},${lat}/realtime.json`,
             params: {
-                lang: "zh-CN",
                 unit: "metric"
             }
         }).then((value: AxiosResponse) => {

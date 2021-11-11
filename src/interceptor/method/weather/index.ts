@@ -40,9 +40,9 @@ const weatherInterceptor = new Interceptor("weather", context => {
                 weather: skyconDict[data.result.realtime.skycon],
                 temperature: data.result.realtime.temperature,
                 apparent_temperature: data.result.realtime.apparent_temperature,
-                aqi: `${data.result.realtime.air_quality.aqi.chn}（${toAqiDesc(data.result.realtime.air_quality.aqi.chn)}）`,
-                comfort: `${data.result.realtime.life_index.comfort.index}（${dressingDict[data.result.realtime.life_index.comfort.desc]}）`,
-                ultraviolet: `${data.result.realtime.life_index.ultraviolet.index}（${ultravioletDict[data.result.realtime.life_index.ultraviolet.desc]}）`
+                aqi: `${data.result.realtime.air_quality.aqi.chn}（${data.result.realtime.air_quality.description.chn}）`,
+                comfort: `${data.result.realtime.life_index.comfort.index}（${data.result.realtime.life_index.comfort.desc}）`,
+                ultraviolet: `${data.result.realtime.life_index.ultraviolet.index}（${data.result.realtime.life_index.ultraviolet.desc}）`
             })
         }
     })

@@ -41,8 +41,8 @@ const weatherInterceptor = new Interceptor("weather", context => {
                 temperature: data.result.realtime.temperature,
                 apparent_temperature: data.result.realtime.apparent_temperature,
                 aqi: `${data.result.realtime.air_quality.aqi.chn}（${toAqiDesc(data.result.realtime.air_quality.aqi.chn)}）`,
-                comfort: `${data.result.realtime.life_index.comfort.index}（${dressingDict[data.result.realtime.life_index.comfort.index]}）`,
-                ultraviolet: `${data.result.realtime.life_index.ultraviolet.index}（${ultravioletDict[data.result.realtime.life_index.ultraviolet.index]}）`
+                comfort: `${data.result.realtime.life_index.comfort.index}（${dressingDict[data.result.realtime.life_index.comfort.desc]}）`,
+                ultraviolet: `${data.result.realtime.life_index.ultraviolet.index}（${ultravioletDict[data.result.realtime.life_index.ultraviolet.desc]}）`
             })
         }
     })

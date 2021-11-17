@@ -5,7 +5,7 @@
 import Interceptor from "../../Interceptor";
 import { sentence } from "./api";
 
-const jokeInterceptor = new Interceptor("poetry", context => {
+const poetryInterceptor = new Interceptor("poetry", context => {
     context.template.add("poetry.success", [
         "{content}",
     ])
@@ -25,4 +25,4 @@ const jokeInterceptor = new Interceptor("poetry", context => {
         }
     })
 
-export default jokeInterceptor
+export default poetryInterceptor

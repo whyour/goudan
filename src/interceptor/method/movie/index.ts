@@ -5,14 +5,14 @@
 import Interceptor from "../../Interceptor";
 import { FileBox } from 'wechaty';
 
-const jokeInterceptor = new Interceptor("movie", context => {
+const movieInterceptor = new Interceptor("movie", context => {
     context.template.add("movie.success", [
         "{content}",
     ])
     context.template.add("movie.failed", "哎呀，狗蛋没找到合适的电影图片。等会再来试试？")
 })
-    .title("诗词")
-    .usage("来首诗")
+    .title("电影")
+    .usage("电影图片")
     .check((context, message) => /^(狗蛋.*)?(电影)/.test(message.text()))
     .handler(async (context, message) => {
         const random = Math.floor(Math.random() * (400 - 1)) + 1;
@@ -21,4 +21,4 @@ const jokeInterceptor = new Interceptor("movie", context => {
         return '';
     })
 
-export default jokeInterceptor
+export default movieInterceptor

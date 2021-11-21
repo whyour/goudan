@@ -15,7 +15,7 @@ export function initCron(bot: Wechaty) {
     }
   });
 
-  schedule.scheduleJob("0 0 8 * * *", async () => {
+  schedule.scheduleJob("0 30 7 * * *", async () => {
     let room = await bot.Room.find({ topic: '纵贯线' });
     try {
       const text = await weather('朝阳区');
@@ -25,7 +25,7 @@ export function initCron(bot: Wechaty) {
     }
   });
 
-  schedule.scheduleJob("1 0 8 * * *", async () => {
+  schedule.scheduleJob("1 30 7 * * *", async () => {
     let room = await bot.Room.find({ topic: '纵贯线' });
     try {
       const text = await weather('福田区');
@@ -35,7 +35,7 @@ export function initCron(bot: Wechaty) {
     }
   });
 
-  schedule.scheduleJob("2 0 8 * * *", async () => {
+  schedule.scheduleJob("2 30 7 * * *", async () => {
     let room = await bot.Room.find({ topic: '纵贯线' });
     try {
       const text = await weather('永康');

@@ -110,8 +110,48 @@ export const toAqiDesc = (aqi: number): string => {
     else if (aqi <= 300) return "中度污染"
     else return "重度污染"
 }
+export const toWindSpeedDesc = (speed: number): string => {
+    if (speed < 1) return "无风（0级）"
+    else if (speed <= 5) return "微风徐徐（1级）"
+    else if (speed <= 11) return "清风（2级）"
+    else if (speed <= 19) return "树叶摇摆（3级）"
+    else if (speed <= 28) return "树枝摇动（4级）"
+    else if (speed <= 38) return "风力强劲（5级）"
+    else if (speed <= 49) return "风力强劲（6级）"
+    else if (speed <= 61) return "风力超强（7级）"
+    else if (speed <= 74) return "狂风大作（8级）"
+    else if (speed <= 88) return "狂风呼啸（9级）"
+    else if (speed <= 102) return "暴风毁树（10级）"
+    else if (speed <= 117) return "暴风毁树（11级）"
+    else if (speed <= 133) return "飓风（12级）"
+    else if (speed <= 149) return "台风（13级）"
+    else if (speed <= 166) return "强台风（14级）"
+    else if (speed <= 183) return "强台风（15级）"
+    else if (speed <= 201) return "超强台风（16级）"
+    else if (speed <= 220) return "超强台风（17级）"
+    else return ""
+}
+export const toWindDirectionDesc = (angle: number): string => {
+    if (angle <= 11.25 || angle >= 348.76) return "北"
+    else if (angle <= 33.75) return "北东北"
+    else if (angle <= 56.25) return "东北"
+    else if (angle <= 78.75) return "东东北"
+    else if (angle <= 101.25) return "东"
+    else if (angle <= 123.75) return "东东南"
+    else if (angle <= 146.25) return "东南"
+    else if (angle <= 168.75) return "南东南"
+    else if (angle <= 191.25) return "南"
+    else if (angle <= 213.75) return "南西南"
+    else if (angle <= 236.25) return "西南"
+    else if (angle <= 258.75) return "西西南"
+    else if (angle <= 281.25) return "西"
+    else if (angle <= 303.75) return "西西北"
+    else if (angle <= 326.25) return "西北"
+    else if (angle <= 348.75) return "北西北"
+    else return ""
+}
 
-template.set("weather.success", "{address}的实时天气情况：\n{weather}\n温度：{temperature}℃\n体感温度：{apparent_temperature}℃\n空气质量：{aqi}\n舒适指数：{comfort}\n紫外线指数：{ultraviolet}\n以上数据来源于彩云天气")
+template.set("weather.success", "{address}的实时天气情况：\n{weather}\n温度：{temperature}℃\n体感温度：{apparent_temperature}℃\n空气质量：{aqi}\n舒适指数：{comfort}\n紫外线指数：{ultraviolet}\n风力：{speed}\n风向：{direction}\n以上数据来源于彩云天气")
 
 export default function caiyunWeather(lng: number, lat: number): Promise<RealtimeWeather> {
     const apiKey = getAPIKey("weather")

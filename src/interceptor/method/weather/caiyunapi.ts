@@ -187,7 +187,7 @@ export function caiyunTomorrowWeather(lng: number, lat: number): Promise<Realtim
                         realtime: {
                             skycon: data.result.daily.skycon[1].value,
                             temperature: data.result.daily.temperature[1].avg,
-                            apparent_temperature: '',
+                            apparent_temperature: '-',
                             air_quality: {
                                 aqi: {
                                     chn: data.result.daily.air_quality.aqi[1].avg.chn
@@ -199,7 +199,7 @@ export function caiyunTomorrowWeather(lng: number, lat: number): Promise<Realtim
                             life_index: {
                                 comfort: {
                                     index: data.result.daily.life_index.comfort[1].index,
-                                    desc: data.result.daily.life_index.comfort[1].index,
+                                    desc: data.result.daily.life_index.comfort[1].desc,
                                 },
                                 ultraviolet: {
                                     index: data.result.daily.life_index.ultraviolet[1].index,

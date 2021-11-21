@@ -33,7 +33,7 @@ const weatherInterceptor = new Interceptor("weather", context => {
         const { arg } = checkerArgs
         if (!arg) return context.template.use("weather.location.unknown")
         else {
-            const location = await place(arg.replace('明天的', '').replace('明天', ''))
+            const location = await place(arg.replace('明天', ''))
             let data;
             if (arg.includes('明天')) {
                 data = await caiyunTomorrowWeather(location.location.lng, location.location.lat)

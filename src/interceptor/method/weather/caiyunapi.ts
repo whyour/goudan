@@ -187,13 +187,13 @@ export function caiyunTomorrowWeather(lng: number, lat: number): Promise<Realtim
                         realtime: {
                             skycon: data.result.daily.skycon[1].value,
                             temperature: data.result.daily.temperature[1].avg,
-                            apparent_temperature: '无',
+                            apparent_temperature: '',
                             air_quality: {
                                 aqi: {
                                     chn: data.result.daily.air_quality.aqi[1].avg.chn
                                 },
                                 description: {
-                                    chn: ''
+                                    chn: '无'
                                 }
                             },
                             life_index: {

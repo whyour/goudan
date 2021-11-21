@@ -169,3 +169,53 @@ export default function caiyunWeather(lng: number, lat: number): Promise<Realtim
         }).catch(reject)
     })
 }
+
+export function caiyunTomorrowWeather(lng: number, lat: number): Promise<RealtimeWeather> {
+    const apiKey = getAPIKey("weather")
+    return new Promise<RealtimeWeather>((resolve, reject) => {
+        axios({
+            method: "GET",
+            url: `https://api.caiyunapp.com/v2.5/${apiKey}/${lng},${lat}/daily.json`,
+            params: {
+                unit: "metric"
+            }
+        }).then((value: AxiosResponse) => {
+            const data = value.data
+            if (data.status === "ok") {
+                const result: any = {
+                    result: {
+                        realtime: {
+                            skycon: data.result.daily.skycon[1].value,
+                            temperature: data.result.daily.temperature[1].avg,
+                            apparent_temperature: '无',
+                            air_quality: {
+                                aqi: {
+                                    chn: data.result.daily.air_quality.aqi[1].avg
+                                },
+                                description: {
+                                    chn: '无'
+                                }
+                            },
+                            life_index: {
+                                comfort: {
+                                    index: data.result.daily.life_index.comfort[1].index,
+                                    desc: data.result.daily.life_index.comfort[1].index,
+                                },
+                                ultraviolet: {
+                                    index: data.result.daily.life_index.ultraviolet[1].index,
+                                    desc: data.result.daily.life_index.ultraviolet[1].desc,
+                                }
+                            },
+                            wind: {
+                                speed: data.result.daily.wind[1].avg.speed,
+                                direction: data.result.daily.wind[1].avg.direction,
+                            }
+                        }
+                    }
+                }
+                resolve(result as RealtimeWeather)
+            }
+            else reject((data as CaiyunError).error)
+        }).catch(reject)
+    })
+}

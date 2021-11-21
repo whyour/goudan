@@ -5,7 +5,7 @@
 
 
 // 将具体实现引用放在后面，就可以在该引用文件里使用 template.set 来修改默认的返回值
-import caiyunWeather, {dressingDict, skyconDict, toAqiDesc, toWindDirectionDesc, toWindSpeedDesc, ultravioletDict} from "./caiyunapi";
+import caiyunWeather, {caiyunTomorrowWeather, dressingDict, skyconDict, toAqiDesc, toWindDirectionDesc, toWindSpeedDesc, ultravioletDict} from "./caiyunapi";
 import {place} from "../../../lib/APIs/CaiyunAPI";
 import Interceptor from "../../Interceptor";
 
@@ -34,7 +34,12 @@ const weatherInterceptor = new Interceptor("weather", context => {
         if (!arg) return context.template.use("weather.location.unknown")
         else {
             const location = await place(arg)
-            const data = await caiyunWeather(location.location.lng, location.location.lat)
+            let data;
+            if (arg.includes('明天')) {
+                data = await caiyunTomorrowWeather(location.location.lng, location.location.lat)
+            } else {
+                data = await caiyunWeather(location.location.lng, location.location.lat)
+            }
             return context.template.use("weather.success", {
                 address: `${location.name}（${location.address}）`,
                 weather: skyconDict[data.result.realtime.skycon],

@@ -1,5 +1,5 @@
 {
-  "name": "piggy-bro",
+  "name": "goudan",
   "version": "1.0.0",
   "description": "An open-source wechaty based chatting bot",
   "main": "build/index.js",
@@ -44,17 +44,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ReiKohaku/piggy-bro.git"
+    "url": "git+https://github.com/w'h'you'r/goudan.git"
   },
   "author": {
-    "name": "ReiKohaku",
-    "email": "hbsjzjwj@gmail.com",
-    "url": "https://github.com/ReiKohaku"
+    "name": "whyour",
+    "url": "https://github.com/whyour"
   },
   "bugs": {
-    "url": "https://github.com/ReiKohaku/piggy-bro/issues"
+    "url": "https://github.com/whyour/goudan/issues"
   },
-  "homepage": "https://github.com/ReiKohaku/piggy-bro#readme",
+  "homepage": "https://github.com/whyour/goudan#readme",
   "publishConfig": {
     "access": "public"
   }

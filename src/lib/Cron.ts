@@ -49,6 +49,6 @@ export function initCron(bot: Wechaty) {
 async function weather(pos) {
   const location = await place(pos);
   const data = await caiyunWeather(location.location.lng, location.location.lat);
-  const str = `${location.name}（${location.address}）的实时天气情况：\n${skyconDict[data.result.realtime.skycon]}\n温度：${data.result.realtime.temperature}℃\n体感温度：${data.result.realtime.apparent_temperature}℃\n空气质量：${data.result.realtime.air_quality.aqi.chn}（${data.result.realtime.air_quality.description.chn}）}\n舒适指数：${data.result.realtime.life_index.comfort.index}（${data.result.realtime.life_index.comfort.desc}）}\n紫外线指数：${data.result.realtime.life_index.ultraviolet.index}（${data.result.realtime.life_index.ultraviolet.desc}）}\n风力：${toWindSpeedDesc(data.result.realtime.wind.speed)}\n风向：${toWindDirectionDesc(data.result.realtime.wind.direction)}\n以上数据来源于彩云天气`;
+  const str = `${location.name}（${location.address}）的实时天气情况：\n${skyconDict[data.result.realtime.skycon]}\n温度：${data.result.realtime.temperature}℃\n体感温度：${data.result.realtime.apparent_temperature}℃\n空气质量：${data.result.realtime.air_quality.aqi.chn}（${data.result.realtime.air_quality.description.chn}）\n舒适指数：${data.result.realtime.life_index.comfort.index}（${data.result.realtime.life_index.comfort.desc}）\n紫外线指数：${data.result.realtime.life_index.ultraviolet.index}（${data.result.realtime.life_index.ultraviolet.desc}）\n风力：${toWindSpeedDesc(data.result.realtime.wind.speed)}\n风向：${toWindDirectionDesc(data.result.realtime.wind.direction)}\n以上数据来源于彩云天气`;
   return str;
 }

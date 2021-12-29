@@ -1,8 +1,23 @@
 import schedule from "node-schedule";
-import { Wechaty } from "wechaty";
+import { FileBox, Wechaty } from "wechaty";
 import { getPoint } from "../interceptor/method/poetry/api";
 import caiyunWeather, { skyconDict, toWindDirectionDesc, toWindSpeedDesc } from "../interceptor/method/weather/caiyunapi";
 import { place } from "./APIs/CaiyunAPI";
+
+const timeImages = {
+  1: "https://s4.ax1x.com/2021/12/29/T2FjZ8.jpg",
+  2: "https://s4.ax1x.com/2021/12/29/T2FxIg.jpg",
+  3: "https://s4.ax1x.com/2021/12/29/T2FLsP.jpg",
+  4: "https://s4.ax1x.com/2021/12/29/T2FvdS.jpg",
+  5: "https://s4.ax1x.com/2021/12/29/T2FOqf.jpg",
+  6: "https://s4.ax1x.com/2021/12/29/T2kSiQ.jpg",
+  7: "https://s4.ax1x.com/2021/12/29/T2kpGj.jpg",
+  8: "https://s4.ax1x.com/2021/12/29/T2k9Rs.jpg",
+  9: "https://s4.ax1x.com/2021/12/29/T2kCzn.jpg",
+  10: "https://s4.ax1x.com/2021/12/29/T2kiMq.jpg",
+  11: "https://s4.ax1x.com/2021/12/29/T2kFs0.jpg",
+  12: "https://s4.ax1x.com/2021/12/29/T2kkLV.jpg"
+};
 
 export function initCron(bot: Wechaty) {
   schedule.scheduleJob("10 9 * * *", async () => {
@@ -44,7 +59,20 @@ export function initCron(bot: Wechaty) {
       console.log(e.message);
     }
   });
-}
+
+  schedule.scheduleJob("0 0 8-22 * * *", async () => {
+    let room = await bot.Room.find({ topic: '纵贯线' });
+    try {
+      let hour = new Date().getHours();
+      if (hour > 12) hour = hour - 12;
+      const fileBox = FileBox.fromUrl(timeImages[hour]);
+      await room.say(fileBox)
+    } catch (e) {
+      console.log(e.message);
+    }
+  });
+
+} 
 
 async function weather(pos) {
   const location = await place(pos);

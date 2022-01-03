@@ -1,4 +1,5 @@
-import {Contact, FileBox, Message, MiniProgram, UrlLink} from "wechaty";
+import { Contact, Message, MiniProgram, UrlLink } from "wechaty";
+import { FileBox } from 'file-box'
 import Interceptor, {MessageSayType} from "../interceptor/Interceptor";
 import {template} from "../bot";
 import Context from "./Context";
@@ -49,12 +50,14 @@ export class MessageProcessor {
             if (content === undefined ||
                 content === null ||
                 (content === "string" && content.length === 0)) resolve(void 0)
-            else if (typeof content === "string") message.say(content).then(resolve).catch(reject)
-            else if (typeof content === "number") message.say(content).then(resolve).catch(reject)
-            else if (content instanceof Contact) message.say(content).then(resolve).catch(reject)
-            else if (content instanceof FileBox) message.say(content).then(resolve).catch(reject)
-            else if (content instanceof UrlLink) message.say(content).then(resolve).catch(reject)
-            else if (content instanceof MiniProgram) message.say(content).then(resolve).catch(reject)
+            else {
+                (message as any).say(content).then(resolve).catch(reject)
+            } 
+            // else if (typeof content === "number") message.say(content).then(resolve).catch(reject)
+            // else if (content instanceof Contact) message.say(content).then(resolve).catch(reject)
+            // else if (content instanceof FileBox) message.say(content).then(resolve).catch(reject)
+            // else if (content instanceof UrlLink) message.say(content).then(resolve).catch(reject)
+            // else if (content instanceof MiniProgram) message.say(content).then(resolve).catch(reject)
         })
 
         for (const i of this.interceptors) {

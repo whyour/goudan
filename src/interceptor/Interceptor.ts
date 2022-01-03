@@ -1,4 +1,5 @@
-import {Contact, FileBox, Message, MiniProgram, UrlLink} from "wechaty";
+import {Contact, Message, MiniProgram, UrlLink} from "wechaty";
+import { FileBox } from 'file-box'
 import Attribute = Interceptor.Attribute;
 import Context from "../lib/Context";
 

@@ -1,5 +1,6 @@
 import schedule from "node-schedule";
-import { FileBox, Wechaty } from "wechaty";
+import { Wechaty } from "wechaty";
+import { FileBox } from 'file-box'
 import { getPoint } from "../interceptor/method/poetry/api";
 import caiyunWeather, { skyconDict, toWindDirectionDesc, toWindSpeedDesc } from "../interceptor/method/weather/caiyunapi";
 import { place } from "./APIs/CaiyunAPI";

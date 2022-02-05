@@ -37,10 +37,11 @@ server(botConfig.server.port)
 // 引入拦截器
 import {mp} from "./interceptor";
 import { initCron } from "./lib/Cron";
+import { PuppetXp } from "wechaty-puppet-xp";
 
 const wechaty = WechatyBuilder.build({
     name: "Goudan",
-    puppet: 'wechaty-puppet-wechat',
+    puppet: new PuppetXp(),
 })
 wechaty.on("scan", (qrcode, status) => {
     switch (status) {

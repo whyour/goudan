@@ -45,15 +45,12 @@ const jdInterceptor = new Interceptor("jd", context => {
         const { url } = checkerArgs;
         const encodeUrl = encodeURIComponent(url);
         let msg = '';
-        context.template.use("jd.success", {
-            content: '正在查询，请稍等...'
-        })
         const [promotion, result] = await Promise.all([getPromotion(encodeUrl), getHistoryPrice(encodeUrl)])
         if (typeof result === 'string') {
             msg += result;
             return context.template.use("jd.failed");
         } else {
-            msg += `${result.current}\n购买入口：${promotion.shortUrl}\n${result.lowerestPrice}\n${result.historyDetail}`;
+            msg += `${result.current}\n购买入口：${promotion.shortURL}\n${result.lowerestPrice}\n${result.historyDetail}`;
             return context.template.use("jd.success", {
                 content: msg
             });

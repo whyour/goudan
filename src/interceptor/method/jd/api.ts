@@ -35,10 +35,11 @@ export async function getHistoryPrice(shareUrl: string) {
     if (data.ok == 1 && data.single) {
         const lower = lowerMsgs(data.single);
         const detail = priceSummary(data);
+        const currentPrice =  data.recentlyZK ? `当前价 ¥${data.recentlyZK.originprice}\n到手价 ¥${data.recentlyZK.currentprice}` : ''
         return {
             lowerestPrice: `${lower}\n`,
             historyDetail: detail.substring(1),
-            current: `${data.single.title}\n${data.recentlyZK  ? data.recentlyZK.spprice : ''}`
+            current: `【${data.single.zk_scname}】${data.single.title}\n\n${currentPrice}`
         };
     }
     if (data.ok == 0 && data.msg.length > 0) {
@@ -49,31 +50,26 @@ export async function getHistoryPrice(shareUrl: string) {
 
 function lowerMsgs(data) {
     const lower = data.lowerPriceyh;
-    const lowerDate = dayjs(data.lowerDateyh).format('YYYY-MM-DD');
-    const lowerMsg = "〽️ 历史最低 ➩ " + String(lower) + " ║" + `🗓 ${lowerDate}`;
+    const lowerDate = dayjs(parseInt(data.lowerDateyh.replace("/Date(", "").replace(")/", ""), 10)).format('YYYY-MM-DD');
+    const lowerMsg = "〽️ 历史最低 ➩ " + String(lower) + `🗓 ${lowerDate}`;
     return lowerMsg;
 }
 
 function priceSummary(data) {
     let summary = "";
-    let listPriceDetail = data.PriceRemark.ListPriceDetail.slice(0, 4);
+    let listPriceDetail = data.PriceRemark.ListPriceDetail.slice(2, 4);
     let list = listPriceDetail.concat(historySummary(data.single));
-    list.forEach((item, i) => {
-        if (item.Name == "双11价格") {
-            item.Name = "双十一价格";
-        } else if (item.Name == "618价格") {
-            item.Name = "六一八价格";
-        }
+    for (const item of list) {
         let price = parseInt(item.Price.substr(1));
-        summary += `\n${item.Name}   ${isNaN(price) ? "-" : "¥" + price}   ${item.Date}   ${item.Difference}`;
-    });
+        summary += `\n${item.Name}   ${isNaN(price) ? "-" : "¥" + price}  ${item.Date}  ${item.Difference}`;
+    }
     return summary;
 }
 
 function historySummary(single) {
     const rexMatch = /\[.*?\]/g;
     const rexExec = /\[(.*),(.*),"(.*)".*\]/;
-    let currentPrice, lowest30, lowest90, lowest180, lowest360;
+    let currentPrice, lowest30, lowest90, lowest180;
     let list = single.jiagequshiyh.match(rexMatch).reverse().slice(0, 360);
     for (let i = 0; i < list.length; i++) {
         const item = list[i];
@@ -84,28 +80,21 @@ function historySummary(single) {
             if (i == 0) {
                 currentPrice = price;
                 lowest30 = {
-                    Name: "三十天最低",
+                    Name: "30天最低",
                     Price: `¥${String(price)}`,
                     Date: date,
                     Difference: difference(currentPrice, price),
                     price,
                 };
                 lowest90 = {
-                    Name: "九十天最低",
+                    Name: "90天最低",
                     Price: `¥${String(price)}`,
                     Date: date,
                     Difference: difference(currentPrice, price),
                     price,
                 };
                 lowest180 = {
-                    Name: "一百八最低",
-                    Price: `¥${String(price)}`,
-                    Date: date,
-                    Difference: difference(currentPrice, price),
-                    price,
-                };
-                lowest360 = {
-                    Name: "三百六最低",
+                    Name: "180天最低",
                     Price: `¥${String(price)}`,
                     Date: date,
                     Difference: difference(currentPrice, price),
@@ -130,12 +119,6 @@ function historySummary(single) {
                 lowest180.Date = date;
                 lowest180.Difference = difference(currentPrice, price);
             }
-            if (i < 360 && price < lowest360.price) {
-                lowest360.price = price;
-                lowest360.Price = `¥${String(price)}`;
-                lowest360.Date = date;
-                lowest360.Difference = difference(currentPrice, price);
-            }
         }
     }
     return [lowest30, lowest90, lowest180];
@@ -146,12 +129,12 @@ function difference(currentPrice: number, price: number) {
     let arg2Arr = price.toString().split(".");
     let d1 = arg1Arr.length == 2 ? arg1Arr[1] : "";
     let d2 = arg2Arr.length == 2 ? arg2Arr[1] : "";
-    var maxLen = Math.max(d1.length, d2.length);
-    var m = Math.pow(10, maxLen);
-    var differencePrice = Number(((currentPrice * m + price * m) / m).toFixed(maxLen));
-    if (differencePrice == 0) {
+    const maxLen = Math.max(d1.length, d2.length);
+    const m = Math.pow(10, maxLen);
+    const differencePrice = Number(((currentPrice * m - price * m) / m));
+    if (differencePrice === 0) {
         return "-";
     } else {
-        return `${differencePrice > 0 ? "↑" : "↓"}${String(differencePrice)}`;
+        return `${differencePrice > 0 ? "↑" : "↓"}${differencePrice.toFixed(maxLen).slice(1)}`;
     }
 }

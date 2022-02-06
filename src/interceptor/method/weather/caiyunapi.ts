@@ -154,7 +154,7 @@ export const toWindDirectionDesc = (angle: number): string => {
 template.set("weather.success", "{address}的{flag}天气情况：\n{weather}\n温度：{temperature}℃\n体感温度：{apparent_temperature}℃\n空气质量：{aqi}\n舒适指数：{comfort}\n紫外线指数：{ultraviolet}\n风力：{speed}\n风向：{direction}\n以上数据来源于彩云天气")
 
 export default function caiyunWeather(lng: number, lat: number): Promise<RealtimeWeather> {
-    const apiKey = getAPIKey("weather")
+    const apiKey = getAPIKey("weather");
     return new Promise<RealtimeWeather>((resolve, reject) => {
         axios({
             method: "GET",

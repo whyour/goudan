@@ -35,11 +35,11 @@ export async function getHistoryPrice(shareUrl: string) {
     if (data.ok == 1 && data.single) {
         const lower = lowerMsgs(data.single);
         const detail = priceSummary(data);
-        const currentPrice =  data.recentlyZK ? `当前价 ¥${data.recentlyZK.originprice}\n到手价 ¥${data.recentlyZK.currentprice}` : ''
+        const currentPrice =  data.recentlyZK ? `当前价 ¥${data.recentlyZK.originprice}   到手价 ¥${data.recentlyZK.currentprice}` : ''
         return {
             lowerestPrice: `${lower}\n`,
             historyDetail: detail.substring(1),
-            current: `【${data.single.zk_scname}】${data.single.title}\n\n${currentPrice}`
+            current: `【${data.single.zk_scname}】\n${data.single.title}\n\n${currentPrice}`
         };
     }
     if (data.ok == 0 && data.msg.length > 0) {
@@ -51,7 +51,7 @@ export async function getHistoryPrice(shareUrl: string) {
 function lowerMsgs(data) {
     const lower = data.lowerPriceyh;
     const lowerDate = dayjs(parseInt(data.lowerDateyh.replace("/Date(", "").replace(")/", ""), 10)).format('YYYY-MM-DD');
-    const lowerMsg = "〽️ 历史最低 ➩ " + String(lower) + `🗓 ${lowerDate}`;
+    const lowerMsg = `〽️ 历史最低  ${lower}   ${lowerDate}`;
     return lowerMsg;
 }
 
@@ -61,7 +61,7 @@ function priceSummary(data) {
     let list = listPriceDetail.concat(historySummary(data.single));
     for (const item of list) {
         let price = parseInt(item.Price.substr(1));
-        summary += `\n${item.Name}   ${isNaN(price) ? "-" : "¥" + price}  ${item.Date}  ${item.Difference}`;
+        summary += `\n${item.Name}  ${isNaN(price) ? "-" : "¥" + price}   ${item.Date}`;
     }
     return summary;
 }

@@ -55,7 +55,7 @@ const jdInterceptor = new Interceptor("jd", context => {
         } else {
             msg += `${result.current}\n购买入口：${promotion.shortUrl}\n${result.lowerestPrice}\n${result.historyDetail}`;
             return context.template.use("jd.success", {
-                content: result
+                content: msg
             });
         }
     })

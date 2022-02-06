@@ -1,6 +1,6 @@
 import Axios, { AxiosResponse } from "axios";
 import dayjs from "dayjs";
-import { getAPIKey } from "../../../lib/APIs/ZheTaoKeAPI";
+import { getAPIKey } from "../../../lib/APIs/ZhetaokeAPI";
 
 const axios = Axios.create();
 

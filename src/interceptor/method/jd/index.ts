@@ -29,11 +29,13 @@ const jdInterceptor = new Interceptor("jd", context => {
         // https://item.m.jd.com/product/52204923561.html
         // https://kpl.m.jd.com/product?wareId=43133951261
         // https://m.jingxi.com/item/view?sku=67677434900
+        // https://u.jd.com/0CMGTMh
         const jdRegx = /^https:\/\/item.jd.com\/\d+\.html.*/
         const jdMobileRegx = /^https:\/\/item.m.jd.com\/product\/\d+\.html.*/
         const jdKplRegx = /^https:\/\/kpl.m.jd.com\/product\?wareId=\d+.*/
         const jxRegx = /^https:\/\/m.jingxi.com\/item\/view\?sku=\d+.*/
-        const regxs = [jdRegx, jdMobileRegx, jdKplRegx, jxRegx];
+        const jdUnionRegx = /^https:\/\/u.jd.com\/.*/
+        const regxs = [jdRegx, jdMobileRegx, jdKplRegx, jxRegx, jdUnionRegx];
         if (regxs.some(x => x.test(url))) {
             return { url };
         }

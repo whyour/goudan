@@ -15,31 +15,29 @@ const jdInterceptor = new Interceptor("jd", context => {
     .title("京东返利")
     .usage("京东返利")
     .check(async (context, message) => {
+        const text = message.text();
+        let url = text;
         try {
-            const text = message.text();
             const parser = new xml2js.Parser({ explicitArray: false, ignoreAttrs: true });
             const result = await parser.parseStringPromise(text);
             const type = parseInt(result.msg.appmsg.type, 10);
-            let url = text;
             if (type === 5) {
                 url = result.msg.appmsg.url;
             }
-            // https://item.jd.com/100020837072.html
-            // https://item.m.jd.com/product/52204923561.html
-            // https://kpl.m.jd.com/product?wareId=43133951261
-            // https://m.jingxi.com/item/view?sku=67677434900
-            const jdRegx = /^https:\/\/item.jd.com\/\d+\.html.*/
-            const jdMobileRegx = /^https:\/\/item.m.jd.com\/product\/\d+\.html.*/
-            const jdKplRegx = /^https:\/\/kpl.m.jd.com\/product\?wareId=\d+.*/
-            const jxRegx = /^https:\/\/m.jingxi.com\/item\/view\?sku=\d+.*/
-            const regxs = [jdRegx, jdMobileRegx, jdKplRegx, jxRegx];
-            if (regxs.some(x => x.test(url))) {
-                return { url };
-            }
-            return false;
-        } catch (error) {
-            
+        } catch (error) {}
+        // https://item.jd.com/100020837072.html
+        // https://item.m.jd.com/product/52204923561.html
+        // https://kpl.m.jd.com/product?wareId=43133951261
+        // https://m.jingxi.com/item/view?sku=67677434900
+        const jdRegx = /^https:\/\/item.jd.com\/\d+\.html.*/
+        const jdMobileRegx = /^https:\/\/item.m.jd.com\/product\/\d+\.html.*/
+        const jdKplRegx = /^https:\/\/kpl.m.jd.com\/product\?wareId=\d+.*/
+        const jxRegx = /^https:\/\/m.jingxi.com\/item\/view\?sku=\d+.*/
+        const regxs = [jdRegx, jdMobileRegx, jdKplRegx, jxRegx];
+        if (regxs.some(x => x.test(url))) {
+            return { url };
         }
+        return false;
     })
     .handler(async (context, message, checkerArgs) => {
         const { url } = checkerArgs;

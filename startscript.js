@@ -1,2 +1,4 @@
 const exec = require('child_process').exec;
-exec('npm start', {windowsHide: true});
+const start = exec('npm start', { windowsHide: true });
+
+start.stdout.pipe(process.stdout);

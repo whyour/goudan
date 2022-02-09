@@ -27,6 +27,7 @@
     "axios": "^0.21.1",
     "dayjs": "^1.10.7",
     "file-box": "^1.4.12",
+    "hpagent": "^0.1.2",
     "iconv-lite": "^0.4.24",
     "istextorbinary": "^6.0.0",
     "mime": "^2.5.2",

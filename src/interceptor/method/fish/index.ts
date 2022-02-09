@@ -2,7 +2,7 @@ import { FileBox } from "file-box";
 import Interceptor from "../../Interceptor";
 import { moyu } from "./api";
 
-const FishInterceptor = new Interceptor("fish")
+const fishInterceptor = new Interceptor("fish")
   .title("摸鱼")
   .alias("fish")
   .check((context, message) => /^(狗蛋.*)?(摸鱼)/.test(message.text()))
@@ -14,4 +14,4 @@ const FishInterceptor = new Interceptor("fish")
     return '';
   });
 
-export default FishInterceptor
+export default fishInterceptor

@@ -42,6 +42,7 @@ const jdInterceptor = new Interceptor("jd", context => {
         return false;
     })
     .handler(async (context, message, checkerArgs) => {
+        message.say('正在查询，请稍后...');
         const { url } = checkerArgs;
         const encodeUrl = encodeURIComponent(url);
         let msg = '';

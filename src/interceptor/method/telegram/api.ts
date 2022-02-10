@@ -37,14 +37,18 @@ export async function sendBotMessage(content: string) {
       https: httpsAgent,
     };
   }
-  const res: any = await axios
-    .post(url, {
-      timeout: this.timeout,
-      retry: 0,
-      body: `chat_id=${telegramBotUserId}&text=${content}&disable_web_page_preview=true`,
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      agent,
-    });
-  console.log(res)
-  return !!res.data.ok;
+  try {
+    const res: any = await axios
+      .post(url, {
+        timeout: this.timeout,
+        retry: 0,
+        body: `chat_id=${telegramBotUserId}&text=${content}&disable_web_page_preview=true`,
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        agent,
+      });
+    console.log(res && res.data)
+    return !!res.data.ok;
+  } catch (error) {
+    
+  }
 }

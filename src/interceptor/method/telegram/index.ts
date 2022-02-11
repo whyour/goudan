@@ -8,7 +8,7 @@ const telegramInterceptor = new Interceptor("telegram")
   .handler(async (context, message) => {
     const text = message.text();
     const room = message.room();
-    const contact = message.listener();
+    const contact = message.talker();
     if (room) {
       const groupIds = await getGroupIds();
       console.log('群组ID', room.id);

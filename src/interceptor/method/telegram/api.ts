@@ -9,6 +9,11 @@ export async function getGroupIds() {
   return groupIds.split(',');
 }
 
+export async function getContactIds() {
+  const groupIds = getAPIKey("contactIds");
+  return groupIds.split(',');
+}
+
 export async function sendBotMessage(content: string) {
   const telegramBotApiHost = getAPIKey("telegramBotApiHost");
   const telegramBotProxyAuth = getAPIKey("telegramBotProxyAuth");

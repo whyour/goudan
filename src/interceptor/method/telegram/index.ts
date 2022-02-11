@@ -1,5 +1,5 @@
 import Interceptor from "../../Interceptor";
-import { getGroupIds, sendBotMessage } from "./api";
+import { getGroupIds, sendBotMessage, getContactIds } from "./api";
 
 const telegramInterceptor = new Interceptor("telegram")
   .title("电报")
@@ -16,7 +16,11 @@ const telegramInterceptor = new Interceptor("telegram")
         sendBotMessage(text);
       }
     } else {
+      const contactIds = await getContactIds();
       console.log('联系人ID', contact.id);
+      if (contactIds.includes(contact.id)) {
+        sendBotMessage(text);
+      }
     }
     return '';
   });

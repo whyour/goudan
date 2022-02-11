@@ -26,7 +26,7 @@ import send from "../api/send"
 const routes: Route[] = [
     { path: "/api", handler: () => success("Hello Goudan!") },
     { path: "/api/wiki", handler: wiki, method: "GET,POST" },
-    { path: "/api/status", handler: status, method: "GET,POST" }
+    { path: "/api/status", handler: status, method: "GET,POST" },
     { path: "/api/send", handler: send, method: "POST" }
 ]
 

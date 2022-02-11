@@ -8,12 +8,15 @@ const telegramInterceptor = new Interceptor("telegram")
   .handler(async (context, message) => {
     const text = message.text();
     const room = message.room();
+    const contact = message.listener();
     if (room) {
       const groupIds = await getGroupIds();
-      console.log(room.id);
+      console.log('群组ID', room.id);
       if (groupIds.includes(room.id)) {
         sendBotMessage(text);
       }
+    } else {
+      console.log('联系人ID', contact.id);
     }
     return '';
   });

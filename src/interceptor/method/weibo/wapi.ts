@@ -22,10 +22,9 @@ export default function hotSearch(): Promise<HotKey[]> {
             data: `r=${Math.random()}&t=1hour&keyword=`
         }).then((value: AxiosResponse) => {
             if (value.data.codeid === 10000) {
-                const hotSearchList = value.data.retdata as Array<WapiHotKey[]>
-                const latestHotSearch = hotSearchList[hotSearchList.length - 1]
-                latestHotSearch.sort((a, b) => b.w_hot - a.w_hot)
-                resolve(latestHotSearch.map(h => {
+                const hotSearchList = value.data.retdata as WapiHotKey[]
+                hotSearchList.sort((a, b) => b.w_hot - a.w_hot)
+                resolve(hotSearchList.map(h => {
                     return {
                         key: h.w_key,
                         hot: h.w_hot,

@@ -33,7 +33,7 @@ export async function getCovidData() {
   const url = "https://view.inews.qq.com/g2/getOnsInfo?name=disease_h5"
   let { data: { ret, data } } = await axios.get(url);
   data = JSON.parse(data);
-  const areaData = data.areaTree[0];
+  const areaData = data.areaTree;
   const covid = {};
 
   for (let area of areaData) {

@@ -19,7 +19,7 @@ const covidInterceptor = new Interceptor("covid")
       policy = await getPolicy(cid);
     }
 
-    const covid = getCovidData();
+    const covid = await getCovidData();
     const data = covid[city];
     if (data) {
       const grade = data.total.grade || '风险未确认';

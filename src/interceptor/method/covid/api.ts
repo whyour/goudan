@@ -33,10 +33,12 @@ export async function getCovidData() {
   const url = "https://view.inews.qq.com/g2/getOnsInfo?name=disease_h5"
   let { data: { ret, data } } = await axios.get(url);
   data = JSON.parse(data);
-  const areaData = data.areaTree;
-  const covid = {};
+  const { name, children, ...other } = data.areaTree[0];
+  const covid = {
+    [name]: { name, ...other }
+  };
 
-  for (let area of areaData) {
+  for (let area of children) {
     const { children, name } = area;
     covid[name] = area;
     if (children && children.length > 0) {

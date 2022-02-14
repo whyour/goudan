@@ -17,6 +17,7 @@ export async function getPolicy(uid: string) {
       const msg = `出行(${data['leave_policy_date']})\n${data['leave_policy']}\n\
       ------\n\
       进入(${data['back_policy_date']})\n${data['back_policy']}`
+      return msg;
     } catch (IndexError) {
       return '暂无政策信息';
     }

@@ -10,7 +10,7 @@ const covidInterceptor = new Interceptor("covid")
     const text = message.text();
     let city = text.replace('疫情', '');
     const hasPolicy = city.includes('政策');
-    let policy = 'Tips: 查询出行政策可加上 `政策`'
+    let policy = 'Tips: 查询出行政策可加上【政策】'
     city = city.replace('政策', '');
 
     if (hasPolicy) {
@@ -23,12 +23,13 @@ const covidInterceptor = new Interceptor("covid")
     const data = covid[city];
     if (data) {
       const grade = data.total.grade || '风险未确认';
-      const msg = `**${city} 新冠肺炎疫情情况**  (${grade})\n\n😔新增确诊：${data.today.confirm}\n☢️现存确诊：${data.total.nowConfirm}\n\n${policy}`;
+      const msg = `${city} 新冠肺炎疫情情况  (${grade})\n\n😔新增确诊：${data.today.confirm}\n☢️现存确诊：${data.total.nowConfirm}\n\n${policy}`;
       message.say(msg);
     } else {
       message.say('只限查询国内城市或你地理没学好。');
     }
-    
+
+    return ''
   });
 
 export default covidInterceptor

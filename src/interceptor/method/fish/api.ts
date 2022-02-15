@@ -54,13 +54,13 @@ function gen_text() {
   choice(['有事没事起身去茶水间去厕所去廊道走走', '别老在工位上坐着，钱是老板的，但命是自己的']),
     '',
   // Weekend
-  0 <= weekday && weekday < 6 && `距离周末还有${6 - weekday}天` || `**好好享受周末吧**\n`];
+  0 <= weekday && weekday < 6 && `距离周末还有${6 - weekday}天` || `好好享受周末吧\n`];
 
   // Festival
   for (let item of festivals) {
     const [fest_name, fest_month, fest_day] = item;
     if (fest_month == now_month && fest_day == now_day) {
-      result.push(`\n**今天就是${fest_name}节，好好享受！**\n`);
+      result.push(`\n今天就是${fest_name}节，好好享受！\n`);
     } else {
       const fest_date = dayjs().month(fest_month as number - 1).date(fest_day as number);
       let time_left = fest_date.diff(now, 'd');
@@ -70,16 +70,13 @@ function gen_text() {
       time_left < 60 && result.push(`距离${fest_name}还有${time_left}天`);
     }
   }
-
-  result.concat([
+  result = result.concat([
     '',
     '为了放假加油吧！',
     '上班是帮老板赚钱，摸鱼是赚老板的钱！',
     '最后，祝愿天下所有摸鱼人，都能愉快的渡过每一天！'
   ]);
-
   return result.join('\n');
-
 }
 
 function choice(array) {

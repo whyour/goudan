@@ -2,30 +2,30 @@ import path from "path";
 
 import "./better-console"
 
-import {Wechaty, Message, Contact, WechatyBuilder} from "wechaty"
+import { Wechaty, Message, Contact, WechatyBuilder, ScanStatus } from "wechaty"
 import qrcodeTerminal from "qrcode-terminal";
 
-import {mkdirSync} from "./lib/Util";
+import { mkdirSync } from "./lib/Util";
 export const __data_dir = path.join(__dirname, "../data")
 export const __interceptor_dir = path.join(__dirname, "./interceptor")
 export const __build_dir = __dirname
 export const __src_dir = path.join(__dirname, "../src")
 mkdirSync(__data_dir)
 
-import {loadBotConfig} from "./lib/BotConfig";
+import { loadBotConfig } from "./lib/BotConfig";
 const botConfig = loadBotConfig();
 
 import SqliteTemplate from "./lib/SqliteTemplate";
 const sqliteTemplate = new SqliteTemplate(path.join(__data_dir, "./database.db"))
-export {sqliteTemplate}
+export { sqliteTemplate }
 
 import CallLimiter from "./lib/CallLimiter";
 const callLimiter = new CallLimiter(sqliteTemplate)
-export {callLimiter}
+export { callLimiter }
 
 import Template from "./lib/Template";
 const template = new Template()
-export {template}
+export { template }
 
 // 给公共模板设置默认值
 import "./template"
@@ -35,7 +35,7 @@ import server from "./server"
 server(botConfig.server.port)
 
 // 引入拦截器
-import {mp} from "./interceptor";
+import { mp } from "./interceptor";
 import { initCron } from "./lib/Cron";
 import { PuppetXp } from "wechaty-puppet-xp";
 
@@ -43,26 +43,18 @@ const wechaty = WechatyBuilder.build({
     name: "Goudan",
     puppet: new PuppetXp(),
 })
-wechaty.on("scan", (qrcode, status) => {
-    switch (status) {
-        case 2:
-            console.log(template.use("on.scan.link"))
-            console.log(`https://wechaty.js.org/qrcode/${encodeURIComponent(qrcode)}`)
-            // 生成二维码打印在屏幕上
-            qrcodeTerminal.generate(qrcode, { small: true }, (output) => {
-                console.log(template.use("on.scan.terminal", {
-                    qrcode: output
-                }))
-            })
-            break
-        case 3:
-            console.log(template.use("on.scan.confirm"))
-            break
-        case 4:
-            console.log(template.use("on.scan.login"))
-            break
-        default:
-            console.log(status, qrcode)
+wechaty.on("scan", (qrcode: string, status: ScanStatus) => {
+    if (qrcode) {
+        const qrcodeImageUrl = [
+            'https://wechaty.js.org/qrcode/',
+            encodeURIComponent(qrcode),
+        ].join('')
+        console.info('StarterBot', 'onScan: %s(%s) - %s', status, qrcodeImageUrl)
+
+        qrcodeTerminal.generate(qrcode, { small: true })  // show qrcode on console
+        console.info(`[${status}] ${qrcode}\nScan QR Code above to log in: `)
+    } else {
+        console.info(`[${status}]`)
     }
 })
 wechaty.on("login", (user: Contact) => {
@@ -87,7 +79,7 @@ wechaty.on("error", async (error) => {
 wechaty.start().then(() => {
     console.log(template.use("on.start"))
 })
-export {wechaty}
+export { wechaty }
 
 const startAt = new Date()
-export {startAt}
+export { startAt }

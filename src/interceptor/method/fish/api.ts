@@ -42,7 +42,7 @@ function get_midday(hour) {
   }
 }
 
-function gen_text() {
+export function genText() {
   // Main function of generating text
   const now = dayjs();
   const now_month = now.month() + 1;
@@ -79,14 +79,13 @@ function gen_text() {
   return result.join('\n');
 }
 
-function choice(array) {
+export function choice(array) {
   var rand = Math.random() * array.length | 0;
   var rValue = array[rand];
   return rValue;
 }
 
-export function moyu() {
-  const text = gen_text();
+export function getImage() {
   const image = choice(thumbnails);
-  return { text, image };
+  return image;
 }

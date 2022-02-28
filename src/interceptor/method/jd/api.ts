@@ -22,7 +22,9 @@ export async function getPromotion(shareUrl: string) {
             return body.data;
         }
     }
-    return null;
+    return {
+        shortURL: ''
+    };
 }
 
 export async function getHistoryPrice(shareUrl: string) {
@@ -48,7 +50,11 @@ export async function getHistoryPrice(shareUrl: string) {
             current: `【${data.single.zk_scname}】\n${data.single.title}\n\n${currentPrice}`
         };
     }
-    return null;
+    return {
+        lowerestPrice: '',
+        historyDetail: '',
+        current: ''
+    };
 }
 
 function lowerMsgs(data) {

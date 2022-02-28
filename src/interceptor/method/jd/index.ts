@@ -51,20 +51,13 @@ const jdInterceptor = new Interceptor("jd", context => {
         const encodeUrl = encodeURIComponent(url);
         let msg = '';
         const [promotion, result] = await Promise.all([getPromotion(encodeUrl), getHistoryPrice(encodeUrl)])
-        if (typeof result === 'string') {
-            msg += result;
-            if (promotion.shortURL) { 
-                return context.template.use("jd.success", {
-                    content: `转链成功：${promotion.shortURL}`
-                });
-            }
-            return context.template.use("jd.failed");
-        } else {
-            msg += `${result && result.current}\n购买入口：${promotion.shortURL}\n${result.lowerestPrice}\n${result.historyDetail}`;
+        if (result && typeof result !== 'string') {
+            msg += `${result && result.current}\n购买入口：${promotion && promotion.shortURL}\n${result.lowerestPrice}\n${result.historyDetail}`;
             return context.template.use("jd.success", {
                 content: msg
             });
         }
+        return context.template.use("jd.failed");
     })
 
 export default jdInterceptor

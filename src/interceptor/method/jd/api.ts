@@ -10,17 +10,13 @@ export async function getWhitelistGroupIds() {
 }
 
 export async function getPromotion(shareUrl: string) {
-    const apiKey = getAPIKey("zhetaoke");
     const unionId = getAPIKey("unionId");
-    const url = `https://api.zhetaoke.com:10001/api/open_jing_union_open_promotion_byunionid_get.ashx?appkey=${apiKey}&materialId=${shareUrl}&unionId=${unionId}&positionId=&chainType=3`;
+    const url = `https://api.jingpinku.com/get_powerful_link/api?appid=2202081357006193&appkey=fnetlFHIz45dEYBFNOcBGn17X5nOlLft&union_id=${unionId}&content=${shareUrl}`;
     const { data } = await axios.post(
         url,
     );
-    if (data.jd_union_open_promotion_byunionid_get_response) {
-        const body = JSON.parse(data.jd_union_open_promotion_byunionid_get_response.result);
-        if (body.code === 200) {
-            return body.data;
-        }
+    if (data.code === 0 && data.content) {
+        return data.content;
     }
     return {
         shortURL: ''
@@ -43,7 +39,7 @@ export async function getHistoryPrice(shareUrl: string) {
     if (data.ok == 1 && data.single) {
         const lower = lowerMsgs(data.single);
         const detail = priceSummary(data);
-        const currentPrice =  data.recentlyZK ? `当前价 ¥${data.recentlyZK.originprice}   到手价 ¥${data.recentlyZK.currentprice}` : ''
+        const currentPrice = data.recentlyZK ? `当前价 ¥${data.recentlyZK.originprice}   到手价 ¥${data.recentlyZK.currentprice}` : ''
         return {
             lowerestPrice: `${lower}\n`,
             historyDetail: detail.substring(1),

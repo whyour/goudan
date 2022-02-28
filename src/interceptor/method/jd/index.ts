@@ -32,13 +32,13 @@ const jdInterceptor = new Interceptor("jd", context => {
         // https://u.jd.com/0CMGTMh
         // https://mitem.jkcsjd.com/product/66799436302.html
         // https://item.yiyaojd.com/2943430.html
-        const jdRegx = /^https:\/\/item.jd.com\/\d+\.html.*/
-        const jdMobileRegx = /^https:\/\/item.m.jd.com\/product\/\d+\.html.*/
-        const jdKplRegx = /^https:\/\/kpl.m.jd.com\/product\?wareId=\d+.*/
-        const jxRegx = /^https:\/\/m.jingxi.com\/item\/view\?sku=\d+.*/
-        const jdUnionRegx = /^https:\/\/u.jd.com\/.*/
-        const jdHealthMobileRegx = /^https:\/\/mitem.jkcsjd.com\/product\/\d+\.html.*/
-        const jdHealthRegx = /^https:\/\/item.yiyaojd.com\/\d+\.html.*/
+        const jdRegx = /https:\/\/item.jd.com\/\d+\.html.*/
+        const jdMobileRegx = /https:\/\/item.m.jd.com\/product\/\d+\.html.*/
+        const jdKplRegx = /https:\/\/kpl.m.jd.com\/product\?wareId=\d+.*/
+        const jxRegx = /https:\/\/m.jingxi.com\/item\/view\?sku=\d+.*/
+        const jdUnionRegx = /https:\/\/u.jd.com\/.*/
+        const jdHealthMobileRegx = /https:\/\/mitem.jkcsjd.com\/product\/\d+\.html.*/
+        const jdHealthRegx = /https:\/\/item.yiyaojd.com\/\d+\.html.*/
         const regxs = [jdRegx, jdMobileRegx, jdKplRegx, jxRegx, jdUnionRegx, jdHealthMobileRegx, jdHealthRegx];
 
         const groupIds = await getWhitelistGroupIds();

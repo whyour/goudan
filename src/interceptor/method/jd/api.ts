@@ -16,7 +16,7 @@ export async function getPromotion(shareUrl: string) {
         url,
     );
     if (data.code === 0 && data.content) {
-        return data.content;
+        return { shortURL: data.content };
     }
     return {
         shortURL: ''

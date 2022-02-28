@@ -12,8 +12,11 @@ const parse = (str: string) => {
 }
 
 const handler: RouteHandler = async (req, res, data) => {
-  const args = data ? parse(typeof data === "string" ? data : data.toString("utf-8")) : {}
+  let args = data ? parse(typeof data === "string" ? data : data.toString("utf-8")) : {}
   let result = null;
+  if (!args) {
+    args = {};
+  }
   let content = args.image ? FileBox.fromBase64(args.image) : args.content;
   if (args.to && content) {
     if (args.type === 1) {

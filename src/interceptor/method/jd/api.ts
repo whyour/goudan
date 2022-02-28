@@ -6,7 +6,7 @@ const axios = Axios.create();
 
 export async function getWhitelistGroupIds() {
     const apiKey = getAPIKey("whitelistGroupIds");
-    return apiKey || '';
+    return apiKey.split(',');
 }
 
 export async function getPromotion(shareUrl: string) {

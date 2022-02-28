@@ -4,6 +4,11 @@ import { getAPIKey } from "../../../lib/APIs/ZhetaokeAPI";
 
 const axios = Axios.create();
 
+export async function getWhitelistGroupIds() {
+    const apiKey = getAPIKey("whitelistGroupIds");
+    return apiKey || '';
+}
+
 export async function getPromotion(shareUrl: string) {
     const apiKey = getAPIKey("zhetaoke");
     const unionId = getAPIKey("unionId");
@@ -43,12 +48,7 @@ export async function getHistoryPrice(shareUrl: string) {
             current: `【${data.single.zk_scname}】\n${data.single.title}\n\n${currentPrice}`
         };
     }
-    if (data.ok == 0 && data.msg.length > 0) {
-        let e = `😳 ${data.msg}`;
-        return e;
-    }
-
-    return '';
+    return null;
 }
 
 function lowerMsgs(data) {

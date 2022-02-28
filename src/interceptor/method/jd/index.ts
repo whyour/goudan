@@ -3,7 +3,7 @@
  */
 
 import Interceptor from "../../Interceptor";
-import { getHistoryPrice, getPromotion } from "./api";
+import { getHistoryPrice, getPromotion, getWhitelistGroupIds } from "./api";
 import xml2js from 'xml2js';
 
 const jdInterceptor = new Interceptor("jd", context => {
@@ -40,7 +40,10 @@ const jdInterceptor = new Interceptor("jd", context => {
         const jdHealthMobileRegx = /^https:\/\/mitem.jkcsjd.com\/product\/\d+\.html.*/
         const jdHealthRegx = /^https:\/\/item.yiyaojd.com\/\d+\.html.*/
         const regxs = [jdRegx, jdMobileRegx, jdKplRegx, jxRegx, jdUnionRegx, jdHealthMobileRegx, jdHealthRegx];
-        if (regxs.some(x => x.test(url))) {
+
+        const groupIds = await getWhitelistGroupIds();
+        const room = message.room();
+        if (regxs.some(x => x.test(url)) && (!room || (room && groupIds.includes(room.id)))) {
             return { url };
         }
         return false;
@@ -51,7 +54,7 @@ const jdInterceptor = new Interceptor("jd", context => {
         const encodeUrl = encodeURIComponent(url);
         let msg = '';
         const [promotion, result] = await Promise.all([getPromotion(encodeUrl), getHistoryPrice(encodeUrl)])
-        if (result && typeof result !== 'string') {
+        if (result || promotion) {
             msg += `${result && result.current}\n购买入口：${promotion && promotion.shortURL}\n${result.lowerestPrice}\n${result.historyDetail}`;
             return context.template.use("jd.success", {
                 content: msg

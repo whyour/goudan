@@ -17,6 +17,7 @@ export async function getPromotion(shareUrl: string) {
             return body.data;
         }
     }
+    return null;
 }
 
 export async function getHistoryPrice(shareUrl: string) {
@@ -46,6 +47,8 @@ export async function getHistoryPrice(shareUrl: string) {
         let e = `😳 ${data.msg}`;
         return e;
     }
+
+    return '';
 }
 
 function lowerMsgs(data) {

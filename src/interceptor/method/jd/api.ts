@@ -12,7 +12,7 @@ export async function getWhitelistGroupIds() {
 export async function getPromotion(shareUrl: string) {
     const unionId = getAPIKey("unionId");
     const url = `https://api.jingpinku.com/get_powerful_link/api?appid=2202081357006193&appkey=fnetlFHIz45dEYBFNOcBGn17X5nOlLft&union_id=${unionId}&content=${shareUrl}`;
-    const { data } = await axios.post(
+    const { data } = await axios.get(
         url,
     );
     if (data.code === 0 && data.content) {

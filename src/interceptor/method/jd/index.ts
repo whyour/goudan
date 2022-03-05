@@ -55,7 +55,7 @@ const jdInterceptor = new Interceptor("jd", context => {
         let msg = '';
         const [promotion, result] = await Promise.all([getPromotion(encodeUrl), getHistoryPrice(encodeUrl)])
         if (result || promotion) {
-            msg += `${result.title || '转链成功'}\n${promotion.shortURL}\n${result.history}`;
+            msg += `${result.title || ''}\n\n链接：${promotion.shortURL}\n\n${result.history}`;
             return context.template.use("jd.success", {
                 content: msg
             });

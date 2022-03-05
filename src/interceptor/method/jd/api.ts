@@ -47,10 +47,7 @@ function priceSummary(data) {
     let summary = "";
     let listPriceDetail = data.PriceRemark.ListPriceDetail;
     for (const item of listPriceDetail) {
-        let price = parseInt(item.Price.substr(1));
-        summary += `\n${item.Name}  ${price}  ${item.Date}`;
+        summary += `\n${item.Name}  ${item.Price}  ${item.Date}`;
     }
     return summary;
 }
-
-getHistoryPrice('https://u.jd.com/BdxyCqK')

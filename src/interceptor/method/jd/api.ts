@@ -38,9 +38,9 @@ export async function getHistoryPrice(shareUrl: string) {
     );
     if (data.ok == 1 && data.single) {
         const detail = priceSummary(data);
-        return `【${data.single.zk_scname}】\n${data.single.title}\n\n${detail.substring(1)}`;
+        return { title: `【${data.single.zk_scname}】\n${data.single.title}`, history: detail.substring(1) };
     }
-    return '';
+    return { title: '', history: '' };
 }
 
 function priceSummary(data) {

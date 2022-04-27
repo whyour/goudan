@@ -1,4 +1,5 @@
 import dayjs from "dayjs";
+import axios from "axios";
 
 const thumbnails = [
   'https://s2.loli.net/2021/12/20/8yJiTKYwdt6ro7z.png',
@@ -88,4 +89,15 @@ export function choice(array) {
 export function getImage() {
   const image = choice(thumbnails);
   return image;
+}
+
+export async function getMoyuImage() {
+  const url = "https://api.vvhan.com/api/moyu?type=json";
+  const { data } = await axios.get(
+    url,
+  );
+  if (data.success) {
+    return data.url;
+  }
+  return '';
 }

@@ -21,7 +21,8 @@ const jdInterceptor = new Interceptor("jd", context => {
             const parser = new xml2js.Parser({ explicitArray: false, ignoreAttrs: true });
             const result = await parser.parseStringPromise(text);
             const type = parseInt(result.msg.appmsg.type, 10);
-            if (type === 5) {
+            // type 5 是转发链接， 36 是小程序链接
+            if ([5, 36].includes(type)) {
                 url = result.msg.appmsg.url;
             }
         } catch (error) {}
@@ -55,7 +56,11 @@ const jdInterceptor = new Interceptor("jd", context => {
         let msg = '';
         const [promotion, result] = await Promise.all([getPromotion(encodeUrl), getHistoryPrice(encodeUrl)])
         if (result || promotion) {
-            msg += `${result.title || ''}\n\n链接：${promotion.shortURL}\n\n${result.history}`;
+            let titleStr = '';
+            if (result.title) {
+                titleStr = `${result.title} \n\n`;
+            }
+            msg += `${titleStr}${promotion.shortURL}\n\n${result.history}`;
             return context.template.use("jd.success", {
                 content: msg
             });

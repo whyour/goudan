@@ -60,7 +60,10 @@ const jdInterceptor = new Interceptor("jd", context => {
             if (result.title) {
                 titleStr = `${result.title} \n\n`;
             }
-            msg += `${titleStr}${promotion.shortURL}\n\n${result.history}`;
+            if (promotion.shortURL) {
+                titleStr += `${promotion.shortURL}\n\n`;
+            }
+            msg += `${titleStr}${result.history}`;
             return context.template.use("jd.success", {
                 content: msg
             });

@@ -61,17 +61,17 @@ export function initCron(bot: Wechaty) {
     }
   });
 
-  schedule.scheduleJob("0 0 8-22 * * *", async () => {
-    let room = await bot.Room.find({ topic: '纵贯线' });
-    try {
-      let hour = new Date().getHours();
-      if (hour > 12) hour = hour - 12;
-      const fileBox = FileBox.fromUrl(timeImages[hour]);
-      await room.say(fileBox)
-    } catch (e) {
-      console.log(e.message);
-    }
-  });
+  // schedule.scheduleJob("0 0 8-22 * * *", async () => {
+  //   let room = await bot.Room.find({ topic: '纵贯线' });
+  //   try {
+  //     let hour = new Date().getHours();
+  //     if (hour > 12) hour = hour - 12;
+  //     const fileBox = FileBox.fromUrl(timeImages[hour]);
+  //     await room.say(fileBox)
+  //   } catch (e) {
+  //     console.log(e.message);
+  //   }
+  // });
 
 } 
 

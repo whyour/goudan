@@ -1,5 +1,5 @@
-import { Contact, Message, MiniProgram, UrlLink } from "wechaty";
-import { FileBox } from 'file-box'
+import { Contact, Message, MiniProgram, UrlLink, FileBox } from "wechaty";
+// import { FileBox } from 'file-box'
 import Interceptor, {MessageSayType} from "../interceptor/Interceptor";
 import {template} from "../bot";
 import Context from "./Context";

@@ -15,7 +15,7 @@ const handler: RouteHandler = async (req, res, data) => {
     const args = data ? parse(typeof data === "string" ? data : data.toString("utf-8")) : {}
     const userSelf = (() => {
         try {
-            return wechaty.currentUser
+            return wechaty.userSelf()
         } catch {
             return null
         }

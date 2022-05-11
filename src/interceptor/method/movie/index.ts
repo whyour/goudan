@@ -3,7 +3,7 @@
  */
 
 import Interceptor from "../../Interceptor";
-import { FileBox } from 'file-box'
+import { FileBox } from 'wechaty';
 
 const movieInterceptor = new Interceptor("movie", context => {
     context.template.add("movie.success", [

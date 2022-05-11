@@ -2,7 +2,7 @@ import path from "path";
 
 import "./better-console"
 
-import { Wechaty, Message, Contact, WechatyBuilder, ScanStatus } from "wechaty"
+import { Wechaty, Message, Contact, ScanStatus } from "wechaty"
 import qrcodeTerminal from "qrcode-terminal";
 
 import { mkdirSync } from "./lib/Util";
@@ -38,10 +38,13 @@ server(botConfig.server.port)
 import { mp } from "./interceptor";
 import { initCron } from "./lib/Cron";
 import { PuppetXp } from "wechaty-puppet-xp";
+import { PuppetPadlocal } from "wechaty-puppet-padlocal";
 
-const wechaty = WechatyBuilder.build({
+const wechaty = new Wechaty({
     name: "Goudan",
-    puppet: new PuppetXp(),
+    puppet: new PuppetPadlocal({
+        token: process.env.PADLOCAL_TOKEN || ''
+    }),
 })
 wechaty.on("scan", (qrcode: string, status: ScanStatus) => {
     if (qrcode) {

@@ -1,4 +1,5 @@
-import { FileBox } from "file-box";
+import { FileBox } from "wechaty";
+// import { FileBox } from "file-box";
 import Interceptor from "../../Interceptor";
 import { genText, getImage, getMoyuImage } from "./api";
 

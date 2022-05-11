@@ -1,7 +1,8 @@
 import { RouteHandler } from "../../router/routes";
 import { success } from "../../ResponseGenerator";
 import { startAt, wechaty } from "../../../bot";
-import { FileBox } from 'file-box';
+import { FileBox } from 'wechaty';
+// import { FileBox } from 'file-box';
 
 const parse = (str: string) => {
   try {
@@ -17,7 +18,7 @@ const handler: RouteHandler = async (req, res, data) => {
   if (!args) {
     args = {};
   }
-  let content = args.image ? FileBox.fromBase64(args.image) : args.content;
+  let content = args.image ? FileBox.fromBase64(args.image, '') : args.content;
   if (args.to && content) {
     if (args.type === 1) {
       result = await wechaty.Room.find({ id: args.to });

@@ -7,7 +7,7 @@ import path from 'path';
 
 async function getToken() {
   return new Promise((resolve, reject) => {
-    const url = `http://www.yhc2021.com:81/login?username=${process.env.USERNAME}&password=${process.env.PASSWORD}`;
+    const url = `http://www.yhc2021.com:81/login?username=${process.env.PADUSER}&password=${process.env.PADPWD}`;
     axios.get(url).then(res => {
       console.log('token', res.data);
       if (res.data.code === '0') {

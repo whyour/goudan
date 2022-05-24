@@ -80,9 +80,11 @@ async function addblack(token, phone) {
 
 async function notify(title, content) {
   return new Promise((resolve, reject) => {
-    const url = `https://api2.pushdeer.com/message/push?pushkey=${process.env.PUSHKEY}&text=${encodeURIComponent(
+    const url = `${process.env.BARKKEY}/${encodeURIComponent(
       title,
-    )}&desp=${encodeURIComponent(content)}&type=markdown`;
+    )}/${encodeURIComponent(
+      content,
+    )}`;
     axios
       .get(url, {
         timeout: 30000,

@@ -1,4 +1,5 @@
 import Interceptor from "../../Interceptor";
+import { getWhitelistGroupIds } from "../jd/api";
 import { getCities, getCovidData, getPolicy } from "./api";
 
 const covidInterceptor = new Interceptor("covid")

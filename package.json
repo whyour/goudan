@@ -15,6 +15,7 @@
   ],
   "scripts": {
     "start": "tsc && node build/entry.js",
+    "padlocal": "ts-node-transpile-only tools/padlocal.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
     "release": "tsc && npm publish"
   },

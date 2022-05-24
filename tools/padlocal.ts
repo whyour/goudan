@@ -1,6 +1,6 @@
 import puppeteer from 'puppeteer';
 import axios from 'axios';
-import dotent from 'dotent';
+import dotenv from 'dotenv';
 
 async function getToken() {
   return new Promise((resolve, reject) => {
@@ -152,7 +152,7 @@ async function run() {
   await browser.close();
 }
 
-dotent.config();
+dotenv.config();
 run().then(x => {
   console.log('执行结束');
 }).catch(err => {

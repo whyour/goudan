@@ -4,7 +4,14 @@ import { getCities, getCovidData, getPolicy } from "./api";
 const covidInterceptor = new Interceptor("covid")
   .title("疫情查询")
   .alias("covid")
-  .check((context, message) => /^(狗蛋.*)?(.*)疫情/.test(message.text()))
+  .check(async (context, message) => {
+    const groupIds = await getWhitelistGroupIds();
+    const room = message.room();
+    if (!room || (room && groupIds.includes(room.id))) {
+      return /^(狗蛋.*)?(.*)疫情/.test(message.text());
+    }
+    return false
+  })
   .handler(async (context, message) => {
     message.say('正在获取中...');
     const text = message.text();

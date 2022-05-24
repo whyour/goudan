@@ -4,6 +4,7 @@ import axios from 'axios';
 import dotenv from 'dotenv';
 import fs from 'fs';
 import path from 'path';
+import http from 'http';
 
 async function getToken() {
   return new Promise((resolve, reject) => {
@@ -166,9 +167,14 @@ async function run() {
   await browser.close();
 }
 
-dotenv.config();
-run().then(x => {
-  console.log('执行结束');
-}).catch(err => {
-  notify('PadLocal获取失败', `${JSON.stringify(err)}`);
-})
+http.createServer(function (request, response) {
+  response.writeHead(200, {'Content-Type': 'text/plain'});
+  response.end('Hello World\n');
+}).listen(4321, () => {
+  dotenv.config();
+  run().then(x => {
+    console.log('执行结束');
+  }).catch(err => {
+    notify('PadLocal获取失败', `${JSON.stringify(err)}`);
+  })
+});

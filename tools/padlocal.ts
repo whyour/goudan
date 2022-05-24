@@ -156,9 +156,9 @@ async function run() {
     const env = fs.readFileSync(envPath).toString();
     const data = env.replace(/PADLOCAL_TOKEN=.*/, `PADLOCAL_TOKEN=${padToken}`);
     fs.writeFileSync(envPath, data);
-    dotenv.config();
+    dotenv.config({ override: true });
     if (process.env.PADLOCAL_TOKEN === padToken) {
-      await notify('PadLocal写入环境变量成功');
+      await notify('PadLocal写入环境变量成功', `token: ${padToken}`);
     } else {
       await notify('PadLocal写入环境变量失败', `token: ${padToken}`);
     }

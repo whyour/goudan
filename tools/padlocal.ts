@@ -1,6 +1,9 @@
+// @ts-nocheck
 import puppeteer from 'puppeteer';
 import axios from 'axios';
 import dotenv from 'dotenv';
+import fs from 'fs';
+import path from 'path';
 
 async function getToken() {
   return new Promise((resolve, reject) => {
@@ -145,6 +148,17 @@ async function run() {
     await notify('PadLocal获取成功', `token 获取成功, token: ${padToken}`);
     await addblack(token, phone);
     await release(token, phone);
+
+    const envPath = path.join(__dirname, '../.env');
+    const env = fs.readFileSync(envPath).toString();
+    const data = env.replace(/PADLOCAL_TOKEN=.*/, `PADLOCAL_TOKEN=${padToken}`);
+    fs.writeFileSync(envPath, data);
+    dotenv.config();
+    if (process.env.PADLOCAL_TOKEN === padToken) {
+      await notify('PadLocal写入环境变量成功');
+    } else {
+      await notify('PadLocal写入环境变量失败', `token: ${padToken}`);
+    }
   } else {
     await notify('PadLocal获取失败', ``);
   }

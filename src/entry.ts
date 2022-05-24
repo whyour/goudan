@@ -5,6 +5,7 @@ import Path from "path"
 import "./better-console"
 import path from "path";
 import fs from "fs";
+import dotenv from 'dotenv';
 
 interface GuardConfig {
     autoRestart: boolean
@@ -40,4 +41,5 @@ function createBot() {
         }
     })
 }
+dotenv.config()
 createBot()

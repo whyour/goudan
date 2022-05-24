@@ -7,3 +7,4 @@ build
 data
 *.memory-card.json
 .env
+pnpm-lock.yaml

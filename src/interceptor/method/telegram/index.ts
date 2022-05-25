@@ -6,6 +6,7 @@ const telegramInterceptor = new Interceptor("telegram")
   .alias("telegram")
   .check((context, message) => true)
   .handler(async (context, message) => {
+    console.log(message);
     const text = message.text();
     const room = message.room();
     const contact = message.talker();

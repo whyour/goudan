@@ -24,6 +24,8 @@ const jdInterceptor = new Interceptor("jd", context => {
             // type 5 是转发链接， 36 是小程序链接
             if ([5, 36].includes(type)) {
                 url = result.msg.appmsg.url;
+            } else if(result.msg.appmsg.url) {
+                message.say(result.msg.appmsg.url);
             }
         } catch (error) {}
         // https://item.jd.com/100020837072.html

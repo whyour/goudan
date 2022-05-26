@@ -5,6 +5,7 @@
 import Interceptor from "../../Interceptor";
 import { FileBox } from 'file-box';
 import xml2js from 'xml2js';
+import xmldom from 'xmldom';
 
 const qrcodeInterceptor = new Interceptor("qrcode", context => {
     context.template.add("qrcode.success", [
@@ -30,11 +31,11 @@ const qrcodeInterceptor = new Interceptor("qrcode", context => {
             const parser = new xml2js.Parser({ explicitArray: false, ignoreAttrs: true });
             const result = await parser.parseStringPromise(text);
             let content = result.msg.appmsg.refermsg.content;
-            content = content.replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&nbsp;/g, " ").replace(/&quot/g, "'");
 
             let res = content;
             try {
-                const refContent = await parser.parseStringPromise(content);
+                const xmlStringSerialized = new xmldom.DOMParser().parseFromString(content\, "text/xml");
+                const refContent = await parser.parseStringPromise(xmlStringSerialized);
                 res = refContent.msg.appmsg.url;
             } catch (error) { }
             

@@ -24,6 +24,7 @@
   ],
   "license": "MIT",
   "dependencies": {
+    "NeteaseCloudMusicApi": "^4.0.17",
     "axios": "^0.21.1",
     "dayjs": "^1.10.7",
     "file-box": "^1.4.12",
@@ -31,7 +32,6 @@
     "iconv-lite": "^0.4.24",
     "istextorbinary": "^6.0.0",
     "mime": "^2.5.2",
-    "NeteaseCloudMusicApi": "^4.0.17",
     "node-emoji": "^1.10.0",
     "node-schedule": "^2.0.0",
     "pinyin": "^2.10.2",
@@ -40,7 +40,8 @@
     "wechaty": "^1.20.2",
     "wechaty-puppet": "^1.20.1",
     "wechaty-puppet-xp": "^1.10.27",
-    "xml2js": "^0.4.23"
+    "xml2js": "^0.4.23",
+    "xmldom": "^0.6.0"
   },
   "devDependencies": {
     "@types/mime": "^2.0.3",

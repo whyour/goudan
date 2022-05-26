@@ -67,7 +67,7 @@ const jdInterceptor = new Interceptor("jd", context => {
             }
             msg += `${titleStr}${result.history}`;
             return context.template.use("jd.success", {
-                content: msg
+                content: msg ? msg : '未查到关于此商品的信息'
             });
         }
         return context.template.use("jd.failed");

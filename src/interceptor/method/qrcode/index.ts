@@ -19,7 +19,7 @@ const qrcodeInterceptor = new Interceptor("qrcode", context => {
     })
     .handler(async (context, message, checkerArgs) => {
         const text = message.text();
-        const orginText = text.replace(/qr\n「.*：(.*)」/, '$1');
+        const orginText = text.replace(/qr\n「.*：(.*\n*)」/, '$1');
         const fileBox = FileBox.fromQRCode(orginText)
         await message.say(fileBox)
         return '';

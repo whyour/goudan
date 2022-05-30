@@ -44,7 +44,7 @@ async function getMessage(token, phone) {
         resolve(phoneCode);
       } else if (res.data.code === '1') {
         await sleep(10);
-        return await getMessage(token, phone);
+        getMessage(token, phone);
       }
     });
   });

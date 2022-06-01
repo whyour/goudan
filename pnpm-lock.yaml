@@ -16,6 +16,7 @@ specifiers:
   node-emoji: ^1.10.0
   node-schedule: ^2.0.0
   pinyin: ^2.10.2
+  qr-scanner: ^1.4.1
   qrcode-terminal: ^0.12.0
   sqlite3: ^5.0.2
   wechaty: ^1.20.2
@@ -36,6 +37,7 @@ dependencies:
   node-emoji: 1.11.0
   node-schedule: 2.1.0
   pinyin: 2.11.2
+  qr-scanner: 1.4.1
   qrcode-terminal: 0.12.0
   sqlite3: 5.0.8
   wechaty: 1.20.2
@@ -578,6 +580,10 @@ packages:
 
   /@types/node/17.0.32:
     resolution: {integrity: sha512-eAIcfAvhf/BkHcf4pkLJ7ECpBAhh9kcxRBpip9cTiO+hf+aJrsxYxBeS6OXvOd9WqNAJmavXVpZvY1rBjNsXmw==}
+
+  /@types/offscreencanvas/2019.7.0:
+    resolution: {integrity: sha512-PGcyveRIpL1XIqK8eBsmRBt76eFgtzuPiSTyKHZxnGemp2yzGzWpjYKAfK3wIMiU7eH+851yEpiuP8JZerTmWg==}
+    dev: false
 
   /@types/pinyin/2.10.0:
     resolution: {integrity: sha512-YLty6FPYiBgxNbQNaTRJquvflRdG026jjOpjNXR7HdGEJPGtmPBp1x9LkWePCNA/ClaTT0hYem080TbRCMLbew==}
@@ -3090,6 +3096,12 @@ packages:
   /punycode/2.1.1:
     resolution: {integrity: sha512-XRsRjdf+j5ml+y/6GKHPZbrF/8p2Yga0JPtdqTIY2Xe5ohJPD9saDJJLPvp9+NSBprVvevdXZybnj2cv8OEd0A==}
     engines: {node: '>=6'}
+    dev: false
+
+  /qr-scanner/1.4.1:
+    resolution: {integrity: sha512-xiR90NONHTfTwaFgW/ihlqjGMIZg6ExHDOvGQRba1TvV+WVw7GoDArIOt21e+RO+9WiO4AJJq+mwc5f4BnGH3w==}
+    dependencies:
+      '@types/offscreencanvas': 2019.7.0
     dev: false
 
   /qrcode-terminal/0.12.0:

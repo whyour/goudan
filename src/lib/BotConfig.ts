@@ -8,7 +8,8 @@ export interface BotConfig {
     }
     server: {
         port: number
-    }
+    },
+    whiteList: string[]
 }
 const defaultBotConfig: BotConfig = {
     interceptor: {
@@ -16,7 +17,8 @@ const defaultBotConfig: BotConfig = {
     },
     server: {
         port: 8088
-    }
+    },
+    whiteList: []
 }
 export function loadBotConfig () {
     if (!fs.existsSync(path.join(__data_dir, "./config/bot.json"))) {

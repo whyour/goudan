@@ -74,6 +74,13 @@ wechaty.on("logout", (user: Contact) => {
 })
 wechaty.on("message", async (message: Message) => {
     if (message.self()) return
+
+    const { whiteList } = botConfig;
+    const contact = message.talker();
+    const room = message.room();
+    const id = room ? room.id : contact.id;
+    if (!whiteList.includes(id)) return
+    
     await mp.process(message)
 })
 wechaty.on("error", async (error) => {

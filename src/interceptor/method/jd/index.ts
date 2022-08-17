@@ -25,6 +25,15 @@ const jdInterceptor = new Interceptor("jd", context => {
             if ([5, 36].includes(type)) {
                 url = result.msg.appmsg.url;
             }
+          
+            // type 33 是直接从京东小程序分享链接
+            if ([33].includes(type)) {
+                const pagePath = result.msg.appmsg.weappinfo.pagepath;
+                const pagePathRegx = /.*sku=(\d+)&/;
+                if (pagePath.test(pagePathRegx)) {
+                  url = `https://item.jd.com/${pagePath.match(pagePathRegx)[1]}.html`;
+                }
+            }
         } catch (error) {}
         // https://item.jd.com/100020837072.html
         // https://item.m.jd.com/product/52204923561.html

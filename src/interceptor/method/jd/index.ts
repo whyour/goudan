@@ -30,7 +30,7 @@ const jdInterceptor = new Interceptor("jd", context => {
             if ([33].includes(type)) {
                 const pagePath = result.msg.appmsg.weappinfo.pagepath;
                 const pagePathRegx = /.*sku=(\d+)&/;
-                if (pagePath.test(pagePathRegx)) {
+                if (pagePathRegx.test(pagePath)) {
                   url = `https://item.jd.com/${pagePath.match(pagePathRegx)[1]}.html`;
                 }
             }

@@ -97,7 +97,7 @@ export async function getMoyuImage() {
     url,
   );
   if (data.code === 200) {
-    return data.moyu_url;
+    return data.data.moyu_url;
   }
   return '';
 }

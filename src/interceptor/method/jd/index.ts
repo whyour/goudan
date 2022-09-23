@@ -39,6 +39,7 @@ const jdInterceptor = new Interceptor("jd", context => {
         // https://item.m.jd.com/product/52204923561.html
         // https://kpl.m.jd.com/product?wareId=43133951261
         // https://m.jingxi.com/item/view?sku=67677434900
+        // https://wq.jd.com/item/view?sku=67677434900
         // https://u.jd.com/0CMGTMh
         // https://mitem.jkcsjd.com/product/66799436302.html
         // https://item.yiyaojd.com/2943430.html
@@ -46,10 +47,11 @@ const jdInterceptor = new Interceptor("jd", context => {
         const jdMobileRegx = /https:\/\/item.m.jd.com\/product\/\d+\.html.*/
         const jdKplRegx = /https:\/\/kpl.m.jd.com\/product\?wareId=\d+.*/
         const jxRegx = /https:\/\/m.jingxi.com\/item\/view\?sku=\d+.*/
+        const jdRegx2 = /https:\/\/wq.jd.com\/item\/view\?sku=\d+.*/
         const jdUnionRegx = /https:\/\/u.jd.com\/.*/
         const jdHealthMobileRegx = /https:\/\/mitem.jkcsjd.com\/product\/\d+\.html.*/
         const jdHealthRegx = /https:\/\/item.yiyaojd.com\/\d+\.html.*/
-        const regxs = [jdRegx, jdMobileRegx, jdKplRegx, jxRegx, jdUnionRegx, jdHealthMobileRegx, jdHealthRegx];
+        const regxs = [jdRegx, jdMobileRegx, jdKplRegx, jxRegx, jdRegx2, jdUnionRegx, jdHealthMobileRegx, jdHealthRegx];
 
         const groupIds = await getWhitelistGroupIds();
         const room = message.room();

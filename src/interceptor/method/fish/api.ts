@@ -92,12 +92,12 @@ export function getImage() {
 }
 
 export async function getMoyuImage() {
-  const url = "https://api.vvhan.com/api/moyu?type=json";
+  const url = "https://api.j4u.ink/v1/store/other/proxy/remote/moyu.json";
   const { data } = await axios.get(
     url,
   );
-  if (data.success) {
-    return data.url;
+  if (data.code === 200) {
+    return data.moyu_url;
   }
   return '';
 }

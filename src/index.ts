@@ -1,3 +1,3 @@
-import Interceptor from "./interceptor/Interceptor";
+import Interceptor from './interceptor/Interceptor';
 
 export { Interceptor };

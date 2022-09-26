@@ -1,9 +1,9 @@
-import Interceptor from "../../Interceptor";
-import { getGroupIds, sendBotMessage, getContactIds } from "./api";
+import Interceptor from '../../Interceptor';
+import { getGroupIds, sendBotMessage, getContactIds } from './api';
 
-const telegramInterceptor = new Interceptor("telegram")
-  .title("电报")
-  .alias("telegram")
+const telegramInterceptor = new Interceptor('telegram')
+  .title('电报')
+  .alias('telegram')
   .check((context, message) => true)
   .handler(async (context, message) => {
     const text = message.text();
@@ -25,4 +25,4 @@ const telegramInterceptor = new Interceptor("telegram")
     return '';
   });
 
-export default telegramInterceptor
+export default telegramInterceptor;

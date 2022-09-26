@@ -12,7 +12,5 @@
     "noImplicitAny": false,
     "declaration": true
   },
-  "include": [
-    "src/**/*"
-  ]
+  "include": ["src/**/*"]
 }

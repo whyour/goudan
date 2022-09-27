@@ -39,7 +39,7 @@ mp.on("error", (message, error) => {
     else {
         console.error(context.template.use("on.error"))
         console.error(error)
-        return context.template.use("error.unknown")
+        return context.template.use("error.unknown", {error: JSON.stringify(error)})
     }
 })
 

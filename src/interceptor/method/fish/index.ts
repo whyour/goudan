@@ -1,6 +1,9 @@
+import axios from "axios";
 import { FileBox } from "file-box";
 import Interceptor from "../../Interceptor";
 import { genText, getImage, getMoyuImage } from "./api";
+import fs from "fs";
+import path from "path";
 
 const fishInterceptor = new Interceptor("fish")
   .title("摸鱼")
@@ -8,10 +11,15 @@ const fishInterceptor = new Interceptor("fish")
   .check((context, message) => /^(狗蛋.*)?(摸鱼)/.test(message.text()))
   .handler(async (context, message) => {
     const image = await getMoyuImage();
-    const fileBox = FileBox.fromUrl(image)
+    const res = await axios.get(image, {
+      responseType: 'arraybuffer',
+    })
+    const uid = Date.now()
+    const filePath = path.join(__dirname, `.tmp`, `${uid}.png`);
+    await fs.promises.writeFile(filePath, res.data, 'binary');
+    const fileBox = FileBox.fromFile(filePath)
     await message.say(fileBox);
-    // const text = genText();
-    // await message.say(text);
+    await fs.promises.unlink(filePath);
     return '';
   });
 

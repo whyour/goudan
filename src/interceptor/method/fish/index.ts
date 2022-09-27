@@ -19,7 +19,7 @@ const fishInterceptor = new Interceptor("fish")
     await fs.promises.writeFile(filePath, res.data, 'binary');
     const fileBox = FileBox.fromFile(filePath)
     await message.say(fileBox);
-    await fs.promises.unlink(filePath);
+    // await fs.promises.unlink(filePath);
     return '';
   });
 

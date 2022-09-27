@@ -15,11 +15,11 @@ const fishInterceptor = new Interceptor("fish")
       responseType: 'arraybuffer',
     })
     const uid = Date.now()
-    const filePath = path.join(__dirname, `.tmp`, `${uid}.png`);
+    const filePath = `.tmp/${uid}.png`;
     await fs.promises.writeFile(filePath, res.data, 'binary');
     const fileBox = FileBox.fromFile(filePath)
     await message.say(fileBox);
-    // await fs.promises.unlink(filePath);
+    await fs.promises.unlink(filePath);
     return '';
   });
 

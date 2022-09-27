@@ -27,7 +27,7 @@
     "NeteaseCloudMusicApi": "^4.0.17",
     "axios": "^0.21.1",
     "dayjs": "^1.10.7",
-    "file-box": "^1.4.12",
+    "file-box": "^1.5.5",
     "hpagent": "^0.1.2",
     "iconv-lite": "^0.4.24",
     "istextorbinary": "^6.0.0",
@@ -40,7 +40,7 @@
     "sqlite3": "^5.0.2",
     "wechaty": "^1.20.2",
     "wechaty-puppet": "^1.20.1",
-    "wechaty-puppet-xp": "^1.10.27",
+    "wechaty-puppet-xp": "^1.11.14",
     "xml2js": "^0.4.23",
     "xmldom": "^0.6.0"
   },

@@ -4,6 +4,7 @@ import Interceptor from "../../Interceptor";
 import { genText, getImage, getMoyuImage } from "./api";
 import fs from "fs";
 import path from "path";
+import { __tmp_dir } from "../../../bot";
 
 const fishInterceptor = new Interceptor("fish")
   .title("摸鱼")
@@ -15,7 +16,7 @@ const fishInterceptor = new Interceptor("fish")
       responseType: 'arraybuffer',
     })
     const uid = Date.now()
-    const filePath = `tmp/${uid}.png`;
+    const filePath = path.join(__tmp_dir, `${uid}.png`);
     await fs.promises.writeFile(filePath, res.data, 'binary');
     const fileBox = FileBox.fromFile(filePath)
     await message.say(fileBox);

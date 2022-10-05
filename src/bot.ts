@@ -37,7 +37,6 @@ server(botConfig.server.port)
 // 引入拦截器
 import { mp } from "./interceptor";
 import { initCron } from "./lib/Cron";
-import { PuppetPadlocal } from "wechaty-puppet-padlocal";
 
 const wechaty = WechatyBuilder.build({
     name: "Goudan",

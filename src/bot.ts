@@ -10,9 +10,7 @@ export const __data_dir = path.join(__dirname, "../data")
 export const __interceptor_dir = path.join(__dirname, "./interceptor")
 export const __build_dir = __dirname
 export const __src_dir = path.join(__dirname, "../src")
-export const __tmp_dir = path.join(__data_dir, "./.tmp")
 mkdirSync(__data_dir)
-mkdirSync(__tmp_dir)
 
 import { loadBotConfig } from "./lib/BotConfig";
 const botConfig = loadBotConfig();
@@ -39,11 +37,14 @@ server(botConfig.server.port)
 // 引入拦截器
 import { mp } from "./interceptor";
 import { initCron } from "./lib/Cron";
-import { PuppetXp } from "wechaty-puppet-xp";
+import { PuppetPadlocal } from "wechaty-puppet-padlocal";
 
 const wechaty = WechatyBuilder.build({
     name: "Goudan",
-    puppet: new PuppetXp(),
+    puppet: 'wechaty-puppet-wechat',
+    puppetOptions: {
+    uos: true, // 开启uos协议
+    },
 })
 wechaty.on("scan", (qrcode: string, status: ScanStatus) => {
     if (qrcode) {
@@ -73,12 +74,6 @@ wechaty.on("logout", (user: Contact) => {
 wechaty.on("message", async (message: Message) => {
     if (message.self()) return
 
-    const { whiteList } = botConfig;
-    const contact = message.talker();
-    const room = message.room();
-    const id = room ? room.id : contact.id;
-    if (!whiteList.includes(id)) return
-    
     await mp.process(message)
 })
 wechaty.on("error", async (error) => {

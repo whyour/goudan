@@ -10,7 +10,9 @@ export const __data_dir = path.join(__dirname, "../data")
 export const __interceptor_dir = path.join(__dirname, "./interceptor")
 export const __build_dir = __dirname
 export const __src_dir = path.join(__dirname, "../src")
+export const __tmp_dir = path.join(__data_dir, "./.tmp")
 mkdirSync(__data_dir)
+mkdirSync(__tmp_dir)
 
 import { loadBotConfig } from "./lib/BotConfig";
 const botConfig = loadBotConfig();

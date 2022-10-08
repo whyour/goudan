@@ -22,7 +22,7 @@ const fishInterceptor = new Interceptor("fish")
     if (regx.test(text)) {
       const times = parseInt(text.match(regx)[1], 10);
       for (let i = 0; i < times; i++) {
-        await message.say(checkerArgs.refMsg);
+        await message.say(checkerArgs.refMsg.content);
       }
     }
     return '';

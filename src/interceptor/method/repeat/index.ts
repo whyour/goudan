@@ -1,12 +1,6 @@
-import axios from "axios";
-import { FileBox } from "file-box";
 import Interceptor from "../../Interceptor";
-import { genText, getImage, getMoyuImage } from "./api";
-import fs from "fs";
-import path from "path";
 import { __tmp_dir } from "../../../bot";
 import xml2js from 'xml2js';
-import xmldom from 'xmldom';
 
 const fishInterceptor = new Interceptor("fish")
   .title("复读机")

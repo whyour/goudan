@@ -38,9 +38,11 @@ const qrcodeInterceptor = new Interceptor("qrcode", context => {
 
       let res = content;
       try {
-        const xmlStringSerialized = new xmldom.DOMParser().parseFromString(content, "text/xml");
-        const refContent = await parser.parseStringPromise(xmlStringSerialized);
-        res = isEncode ? refContent.msg.appmsg && refContent.msg.appmsg.url : refContent.msg;
+        if (res.includes('<msg>')) {
+          const xmlStringSerialized = new xmldom.DOMParser().parseFromString(content, "text/xml");
+          const refContent = await parser.parseStringPromise(xmlStringSerialized);
+          res = isEncode ? refContent.msg.appmsg && refContent.msg.appmsg.url : refContent.msg;
+        }
       } catch (error) { }
 
       if (isEncode) {

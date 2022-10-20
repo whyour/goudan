@@ -5,6 +5,7 @@
 import Interceptor from "../../Interceptor";
 import { getHistoryPrice, getPromotion, getWhitelistGroupIds } from "./api";
 import xml2js from 'xml2js';
+import puppeteer from "puppeteer";
 
 const jdInterceptor = new Interceptor("jd", context => {
     context.template.add("jd.success", [
@@ -25,16 +26,16 @@ const jdInterceptor = new Interceptor("jd", context => {
             if ([5, 36].includes(type)) {
                 url = result.msg.appmsg.url;
             }
-          
+
             // type 33 是直接从京东小程序分享链接
             if ([33].includes(type)) {
                 const pagePath = result.msg.appmsg.weappinfo.pagepath;
                 const pagePathRegx = /.*sku=(\d+)&/;
                 if (pagePathRegx.test(pagePath)) {
-                  url = `https://item.jd.com/${pagePath.match(pagePathRegx)[1]}.html`;
+                    url = `https://item.jd.com/${pagePath.match(pagePathRegx)[1]}.html`;
                 }
             }
-        } catch (error) {}
+        } catch (error) { }
         // https://item.jd.com/100020837072.html
         // https://item.m.jd.com/product/52204923561.html
         // https://kpl.m.jd.com/product?wareId=43133951261
@@ -43,6 +44,7 @@ const jdInterceptor = new Interceptor("jd", context => {
         // https://u.jd.com/0CMGTMh
         // https://mitem.jkcsjd.com/product/66799436302.html
         // https://item.yiyaojd.com/2943430.html
+        // https://3.cn/xxxxx
         const jdRegx = /https:\/\/item.jd.com\/\d+\.html.*/
         const jdMobileRegx = /https:\/\/item.m.jd.com\/product\/\d+\.html.*/
         const jdKplRegx = /https:\/\/kpl.m.jd.com\/product\?wareId=\d+.*/
@@ -51,17 +53,31 @@ const jdInterceptor = new Interceptor("jd", context => {
         const jdUnionRegx = /https:\/\/u.jd.com\/.*/
         const jdHealthMobileRegx = /https:\/\/mitem.jkcsjd.com\/product\/\d+\.html.*/
         const jdHealthRegx = /https:\/\/item.yiyaojd.com\/\d+\.html.*/
+        const threeCNRegx = /https:\/\/3.cn\/.*/
         const regxs = [jdRegx, jdMobileRegx, jdKplRegx, jxRegx, jdRegx2, jdUnionRegx, jdHealthMobileRegx, jdHealthRegx];
 
         const groupIds = await getWhitelistGroupIds();
         const room = message.room();
         if (regxs.some(x => x.test(url)) && (!room || (room && groupIds.includes(room.id)))) {
+            message.say('正在查询，请稍后...');
             return { url };
+        }
+
+        if (threeCNRegx.test(url) && (!room || (room && groupIds.includes(room.id)))) {
+            message.say('正在查询，请稍后...');
+            const browser = await puppeteer.launch();
+
+            const page = await browser.newPage();
+
+            await page.goto(url);
+
+            await page.waitForNavigation()
+            await browser.close();
+            return { url: page.url() };
         }
         return false;
     })
     .handler(async (context, message, checkerArgs) => {
-        message.say('正在查询，请稍后...');
         const { url } = checkerArgs;
         const encodeUrl = encodeURIComponent(url);
         let msg = '';
